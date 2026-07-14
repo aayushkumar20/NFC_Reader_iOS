@@ -1,0 +1,10 @@
+framework module UniversalPassportReader {
+  umbrella header "UniversalPassportReader.h"
+  export *
+
+  module * { export * }
+}
+
+module UniversalPassportReader.Swift {
+  header "UniversalPassportReader-Swift.h"
+}
