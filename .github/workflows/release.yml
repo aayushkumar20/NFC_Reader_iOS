@@ -46,6 +46,12 @@ jobs:
       - name: Compress XCFramework
         run: zip -r UniversalPassportReader.xcframework.zip UniversalPassportReader.xcframework
 
+      - name: Get Commit Message
+        id: get_commit
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B | head -n 1)
+          echo "msg=$COMMIT_MSG" >> $GITHUB_OUTPUT
+
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v2
@@ -53,9 +59,11 @@ jobs:
           files: |
             UniversalPassportReader.xcframework.zip
             UniversalPassportReader.podspec
-          name: Release ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }} - ${{ steps.get_commit.outputs.msg }}
           body: |
             ## 🚀 UniversalPassportReader iOS Framework ${{ github.ref_name }}
+            
+            **Commit Action**: `${{ steps.get_commit.outputs.msg }}`
             
             We are pleased to announce the official release of `UniversalPassportReader` version `${{ github.ref_name }}`. This premium, zero-dependency iOS framework compiles native C++ and Swift targets to provide high-performance, secure ICAO Doc 9303 biometric passport and identity card reading.
             
