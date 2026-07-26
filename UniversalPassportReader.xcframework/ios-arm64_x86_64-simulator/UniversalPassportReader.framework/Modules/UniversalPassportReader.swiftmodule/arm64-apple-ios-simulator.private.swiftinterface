@@ -16,20 +16,43 @@ import _Concurrency
 import _CoreNFC_UIKit
 import _StringProcessing
 import _SwiftConcurrencyShims
-@_Concurrency::MainActor @preconcurrency public struct ScanningHUDView : SwiftUICore::View {
-  @_Concurrency::MainActor @preconcurrency public init(instruction: Swift::String, isNFCActive: Swift::Bool = false, nfcProgress: Swift::Double = 0.0, nfcStatus: Swift::String = "")
-  @_Concurrency::MainActor @preconcurrency public var body: some SwiftUICore::View {
+public struct APDUCommand {
+  public let cla: Swift::UInt8
+  public let ins: Swift::UInt8
+  public let p1: Swift::UInt8
+  public let p2: Swift::UInt8
+  public let data: [Swift::UInt8]
+  public let le: Swift::Int?
+  public init(cla: Swift::UInt8, ins: Swift::UInt8, p1: Swift::UInt8, p2: Swift::UInt8, data: [Swift::UInt8] = [], le: Swift::Int? = nil)
+  public var bytes: [Swift::UInt8] {
     get
   }
-  public typealias Body = @_opaqueReturnTypeOf("$s23UniversalPassportReader15ScanningHUDViewV4bodyQrvp", 0) __
 }
-@_Concurrency::MainActor @preconcurrency public struct VisualEffectBlur : SwiftUI::UIViewRepresentable {
-  @_Concurrency::MainActor @preconcurrency public init(style: UIKit::UIBlurEffect.UIKit::Style)
-  @_Concurrency::MainActor @preconcurrency public func makeUIView(context: UniversalPassportReader::VisualEffectBlur.SwiftUI::Context) -> UIKit::UIVisualEffectView
-  @_Concurrency::MainActor @preconcurrency public func updateUIView(_ uiView: UIKit::UIVisualEffectView, context: UniversalPassportReader::VisualEffectBlur.SwiftUI::Context)
-  public typealias Body = Swift::Never
-  public typealias Coordinator = Swift::Void
-  public typealias UIViewType = UIKit::UIVisualEffectView
+public struct APDUResponse {
+  public let data: [Swift::UInt8]
+  public let sw1: Swift::UInt8
+  public let sw2: Swift::UInt8
+  public init(data: [Swift::UInt8], sw1: Swift::UInt8, sw2: Swift::UInt8)
+  public var isSuccess: Swift::Bool {
+    get
+  }
+  public var sw: Swift::UInt16 {
+    get
+  }
+}
+public struct TLVNode {
+  public let tag: [Swift::UInt8]
+  public let length: Swift::Int
+  public let value: [Swift::UInt8]
+  public var tagValue: Swift::UInt32 {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class ASN1Parser {
+  public static func parse(bytes: [Swift::UInt8]) -> [UniversalPassportReader::TLVNode]
+  public static func findNode(tag: Swift::UInt32, in nodes: [UniversalPassportReader::TLVNode]) -> UniversalPassportReader::TLVNode?
+  public static func extractJPEGBytes(from bytes: [Swift::UInt8]) -> [Swift::UInt8]?
+  @objc deinit
 }
 @_Concurrency::MainActor @preconcurrency public struct CameraPreview : SwiftUI::UIViewRepresentable {
   @_Concurrency::MainActor @preconcurrency public let session: AVFoundation::AVCaptureSession
@@ -50,53 +73,6 @@ import _SwiftConcurrencyShims
   public typealias Body = Swift::Never
   public typealias Coordinator = Swift::Void
   public typealias UIViewType = UniversalPassportReader::CameraPreview.UniversalPassportReader::VideoPreviewView
-}
-@_Concurrency::MainActor @preconcurrency public struct PassportScannerView : SwiftUICore::View {
-  @_Concurrency::MainActor @preconcurrency public var onScanCompleted: (UniversalPassportReader::DocumentData) -> Swift::Void
-  @_Concurrency::MainActor @preconcurrency public var onDismiss: () -> Swift::Void
-  @_Concurrency::MainActor @preconcurrency public init(authKey: UniversalPassportReader::PassportAuthKey? = nil, onScanCompleted: @escaping (UniversalPassportReader::DocumentData) -> Swift::Void, onDismiss: @escaping () -> Swift::Void)
-  @_Concurrency::MainActor @preconcurrency public var body: some SwiftUICore::View {
-    get
-  }
-  public typealias Body = @_opaqueReturnTypeOf("$s23UniversalPassportReader0B11ScannerViewV4bodyQrvp", 0) __
-}
-extension UniversalPassportReader::PassportReaderError : Swift::Identifiable {
-  public var id: Swift::String {
-    get
-  }
-  public typealias ID = Swift::String
-}
-@_Concurrency::MainActor @preconcurrency public struct ResultPresentationView : SwiftUICore::View {
-  @_Concurrency::MainActor @preconcurrency public init(data: UniversalPassportReader::DocumentData, onDismiss: @escaping () -> Swift::Void)
-  @_Concurrency::MainActor @preconcurrency public var body: some SwiftUICore::View {
-    get
-  }
-  public typealias Body = @_opaqueReturnTypeOf("$s23UniversalPassportReader22ResultPresentationViewV4bodyQrvp", 0) __
-}
-@_Concurrency::MainActor @preconcurrency public struct ShimmerEffect : SwiftUICore::ViewModifier {
-  @_Concurrency::MainActor @preconcurrency public init()
-  @_Concurrency::MainActor @preconcurrency public func body(content: UniversalPassportReader::ShimmerEffect.SwiftUICore::Content) -> some SwiftUICore::View
-  
-  public typealias Body = @_opaqueReturnTypeOf("$s23UniversalPassportReader13ShimmerEffectV4body7contentQr7SwiftUI21_ViewModifier_ContentVyACG_tF", 0) __
-}
-extension SwiftUICore::View {
-  @_Concurrency::MainActor @preconcurrency public func shimmer() -> some SwiftUICore::View
-  
-}
-public struct PassportCrypto {
-  public static func sha1(_ data: [Swift::UInt8]) -> [Swift::UInt8]
-  public static func sha256(_ data: [Swift::UInt8]) -> [Swift::UInt8]
-  public static func padISO9797(_ data: [Swift::UInt8]) -> [Swift::UInt8]
-  public static func unpadISO9797(_ data: [Swift::UInt8]) -> [Swift::UInt8]
-  public static func padMRZString(_ input: Swift::String, length: Swift::Int) -> Swift::String
-  public static func mrzCheckDigit(_ input: Swift::String) -> Swift::String
-  public static func mac3(_ data: [Swift::UInt8], key: [Swift::UInt8]) -> [Swift::UInt8]
-  public static func encrypt3DESCBC(key: [Swift::UInt8], iv: [Swift::UInt8], data: [Swift::UInt8]) -> [Swift::UInt8]?
-  public static func decrypt3DESCBC(key: [Swift::UInt8], iv: [Swift::UInt8], data: [Swift::UInt8]) -> [Swift::UInt8]?
-  public static func encrypt3DESECB(key: [Swift::UInt8], data: [Swift::UInt8]) -> [Swift::UInt8]?
-  public static func deriveBACKeys(docNumber: Swift::String, dob: Swift::String, doe: Swift::String) -> (encKey: [Swift::UInt8], macKey: [Swift::UInt8])
-  public static func computeSSC(piccNonce: [Swift::UInt8], ifdNonce: [Swift::UInt8]) -> [Swift::UInt8]
-  public static func hexToBytes(_ hex: Swift::String) -> [Swift::UInt8]?
 }
 public struct DocumentData : Swift::Identifiable {
   public var id: Swift::String {
@@ -121,19 +97,77 @@ public struct DocumentData : Swift::Identifiable {
   }
   public typealias ID = Swift::String
 }
-public struct TLVNode {
-  public let tag: [Swift::UInt8]
-  public let length: Swift::Int
-  public let value: [Swift::UInt8]
-  public var tagValue: Swift::UInt32 {
-    get
-  }
+public struct ParsedMRZ {
+  public let documentType: Swift::String
+  public let documentNumber: Swift::String
+  public let birthDate: Foundation::Date?
+  public let birthDateString: Swift::String
+  public let expiryDate: Foundation::Date?
+  public let expiryDateString: Swift::String
+  public let firstName: Swift::String
+  public let lastName: Swift::String
+  public let nationality: Swift::String
+  public let issuingCountry: Swift::String
+  public let gender: Swift::String
+  public let personalNumber: Swift::String?
+  public let rawString: Swift::String
 }
-@_hasMissingDesignatedInitializers public class ASN1Parser {
-  public static func parse(bytes: [Swift::UInt8]) -> [UniversalPassportReader::TLVNode]
-  public static func findNode(tag: Swift::UInt32, in nodes: [UniversalPassportReader::TLVNode]) -> UniversalPassportReader::TLVNode?
-  public static func extractJPEGBytes(from bytes: [Swift::UInt8]) -> [Swift::UInt8]?
+@_hasMissingDesignatedInitializers public class MRZParser {
+  public static func cleanNumeric(_ input: Swift::String) -> Swift::String
+  public static func cleanAlpha(_ input: Swift::String) -> Swift::String
+  public static func parseBirthDate(_ yy: Swift::String, mm: Swift::String, dd: Swift::String) -> Foundation::Date?
+  public static func parseExpiryDate(_ yy: Swift::String, mm: Swift::String, dd: Swift::String) -> Foundation::Date?
+  public static func parse(lines: [Swift::String]) -> UniversalPassportReader::ParsedMRZ?
   @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class MRZScanner : ObjectiveC::NSObject, Foundation::ObservableObject, AVFoundation::AVCaptureVideoDataOutputSampleBufferDelegate {
+  @Combine::Published<Swift::Bool> @_projectedValueProperty($isSessionRunning) public var isSessionRunning: Swift::Bool {
+    get
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    set
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    _modify
+  }
+  public var $isSessionRunning: Combine::Published<Swift::Bool>.Combine::Publisher {
+    get
+    @available(macOS 11.0, iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+    set
+  }
+  @Combine::Published<AVFoundation::AVAuthorizationStatus> @_projectedValueProperty($cameraPermissionStatus) public var cameraPermissionStatus: AVFoundation::AVAuthorizationStatus {
+    get
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    set
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    _modify
+  }
+  public var $cameraPermissionStatus: Combine::Published<AVFoundation::AVAuthorizationStatus>.Combine::Publisher {
+    get
+    @available(macOS 11.0, iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+    set
+  }
+  final public let captureSession: AVFoundation::AVCaptureSession
+  public var onMRZFound: ((UniversalPassportReader::ParsedMRZ) -> Swift::Void)?
+  @objc override dynamic public init()
+  public func startScanning()
+  public func stopScanning()
+  @objc public func captureOutput(_ output: AVFoundation::AVCaptureOutput, didOutput sampleBuffer: CoreMedia::CMSampleBuffer, from connection: AVFoundation::AVCaptureConnection)
+  public typealias ObjectWillChangePublisher = Combine::ObservableObjectPublisher
+  @objc deinit
+}
+public struct PassportCrypto {
+  public static func sha1(_ data: [Swift::UInt8]) -> [Swift::UInt8]
+  public static func sha256(_ data: [Swift::UInt8]) -> [Swift::UInt8]
+  public static func padISO9797(_ data: [Swift::UInt8]) -> [Swift::UInt8]
+  public static func unpadISO9797(_ data: [Swift::UInt8]) -> [Swift::UInt8]
+  public static func padMRZString(_ input: Swift::String, length: Swift::Int) -> Swift::String
+  public static func mrzCheckDigit(_ input: Swift::String) -> Swift::String
+  public static func mac3(_ data: [Swift::UInt8], key: [Swift::UInt8]) -> [Swift::UInt8]
+  public static func encrypt3DESCBC(key: [Swift::UInt8], iv: [Swift::UInt8], data: [Swift::UInt8]) -> [Swift::UInt8]?
+  public static func decrypt3DESCBC(key: [Swift::UInt8], iv: [Swift::UInt8], data: [Swift::UInt8]) -> [Swift::UInt8]?
+  public static func encrypt3DESECB(key: [Swift::UInt8], data: [Swift::UInt8]) -> [Swift::UInt8]?
+  public static func deriveBACKeys(docNumber: Swift::String, dob: Swift::String, doe: Swift::String) -> (encKey: [Swift::UInt8], macKey: [Swift::UInt8])
+  public static func computeSSC(piccNonce: [Swift::UInt8], ifdNonce: [Swift::UInt8]) -> [Swift::UInt8]
+  public static func hexToBytes(_ hex: Swift::String) -> [Swift::UInt8]?
 }
 public enum PassportReaderError : Swift::Error, Foundation::LocalizedError {
   case connectionFailed
@@ -172,90 +206,56 @@ public enum PassportAuthKey : Swift::Hashable {
   @objc override dynamic public init()
   @objc deinit
 }
-public struct APDUCommand {
-  public let cla: Swift::UInt8
-  public let ins: Swift::UInt8
-  public let p1: Swift::UInt8
-  public let p2: Swift::UInt8
-  public let data: [Swift::UInt8]
-  public let le: Swift::Int?
-  public init(cla: Swift::UInt8, ins: Swift::UInt8, p1: Swift::UInt8, p2: Swift::UInt8, data: [Swift::UInt8] = [], le: Swift::Int? = nil)
-  public var bytes: [Swift::UInt8] {
+@_Concurrency::MainActor @preconcurrency public struct PassportScannerView : SwiftUICore::View {
+  @_Concurrency::MainActor @preconcurrency public var onScanCompleted: (UniversalPassportReader::DocumentData) -> Swift::Void
+  @_Concurrency::MainActor @preconcurrency public var onDismiss: () -> Swift::Void
+  @_Concurrency::MainActor @preconcurrency public init(authKey: UniversalPassportReader::PassportAuthKey? = nil, onScanCompleted: @escaping (UniversalPassportReader::DocumentData) -> Swift::Void, onDismiss: @escaping () -> Swift::Void)
+  @_Concurrency::MainActor @preconcurrency public var body: some SwiftUICore::View {
     get
   }
+  public typealias Body = @_opaqueReturnTypeOf("$s23UniversalPassportReader0B11ScannerViewV4bodyQrvp", 0) __
 }
-public struct APDUResponse {
-  public let data: [Swift::UInt8]
-  public let sw1: Swift::UInt8
-  public let sw2: Swift::UInt8
-  public init(data: [Swift::UInt8], sw1: Swift::UInt8, sw2: Swift::UInt8)
-  public var isSuccess: Swift::Bool {
+extension UniversalPassportReader::PassportReaderError : Swift::Identifiable {
+  public var id: Swift::String {
     get
   }
-  public var sw: Swift::UInt16 {
-    get
-  }
+  public typealias ID = Swift::String
 }
-@objc @_inheritsConvenienceInitializers public class MRZScanner : ObjectiveC::NSObject, Foundation::ObservableObject, AVFoundation::AVCaptureVideoDataOutputSampleBufferDelegate {
-  @Combine::Published<Swift::Bool> @_projectedValueProperty($isSessionRunning) public var isSessionRunning: Swift::Bool {
+@_Concurrency::MainActor @preconcurrency public struct ResultPresentationView : SwiftUICore::View {
+  @_Concurrency::MainActor @preconcurrency public init(data: UniversalPassportReader::DocumentData, onDismiss: @escaping () -> Swift::Void)
+  @_Concurrency::MainActor @preconcurrency public var body: some SwiftUICore::View {
     get
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    set
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    _modify
   }
-  public var $isSessionRunning: Combine::Published<Swift::Bool>.Combine::Publisher {
-    get
-    @available(macOS 11.0, iOS 14.0, tvOS 14.0, watchOS 7.0, *)
-    set
-  }
-  @Combine::Published<AVFoundation::AVAuthorizationStatus> @_projectedValueProperty($cameraPermissionStatus) public var cameraPermissionStatus: AVFoundation::AVAuthorizationStatus {
-    get
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    set
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    _modify
-  }
-  public var $cameraPermissionStatus: Combine::Published<AVFoundation::AVAuthorizationStatus>.Combine::Publisher {
-    get
-    @available(macOS 11.0, iOS 14.0, tvOS 14.0, watchOS 7.0, *)
-    set
-  }
-  final public let captureSession: AVFoundation::AVCaptureSession
-  public var onMRZFound: ((UniversalPassportReader::ParsedMRZ) -> Swift::Void)?
-  @objc override dynamic public init()
-  public func startScanning()
-  public func stopScanning()
-  @objc public func captureOutput(_ output: AVFoundation::AVCaptureOutput, didOutput sampleBuffer: CoreMedia::CMSampleBuffer, from connection: AVFoundation::AVCaptureConnection)
-  public typealias ObjectWillChangePublisher = Combine::ObservableObjectPublisher
-  @objc deinit
+  public typealias Body = @_opaqueReturnTypeOf("$s23UniversalPassportReader22ResultPresentationViewV4bodyQrvp", 0) __
 }
-public struct ParsedMRZ {
-  public let documentType: Swift::String
-  public let documentNumber: Swift::String
-  public let birthDate: Foundation::Date?
-  public let birthDateString: Swift::String
-  public let expiryDate: Foundation::Date?
-  public let expiryDateString: Swift::String
-  public let firstName: Swift::String
-  public let lastName: Swift::String
-  public let nationality: Swift::String
-  public let issuingCountry: Swift::String
-  public let gender: Swift::String
-  public let personalNumber: Swift::String?
-  public let rawString: Swift::String
+@_Concurrency::MainActor @preconcurrency public struct ScanningHUDView : SwiftUICore::View {
+  @_Concurrency::MainActor @preconcurrency public init(instruction: Swift::String, isNFCActive: Swift::Bool = false, nfcProgress: Swift::Double = 0.0, nfcStatus: Swift::String = "")
+  @_Concurrency::MainActor @preconcurrency public var body: some SwiftUICore::View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s23UniversalPassportReader15ScanningHUDViewV4bodyQrvp", 0) __
 }
-@_hasMissingDesignatedInitializers public class MRZParser {
-  public static func cleanNumeric(_ input: Swift::String) -> Swift::String
-  public static func cleanAlpha(_ input: Swift::String) -> Swift::String
-  public static func parseBirthDate(_ yy: Swift::String, mm: Swift::String, dd: Swift::String) -> Foundation::Date?
-  public static func parseExpiryDate(_ yy: Swift::String, mm: Swift::String, dd: Swift::String) -> Foundation::Date?
-  public static func parse(lines: [Swift::String]) -> UniversalPassportReader::ParsedMRZ?
-  @objc deinit
+@_Concurrency::MainActor @preconcurrency public struct VisualEffectBlur : SwiftUI::UIViewRepresentable {
+  @_Concurrency::MainActor @preconcurrency public init(style: UIKit::UIBlurEffect.UIKit::Style)
+  @_Concurrency::MainActor @preconcurrency public func makeUIView(context: UniversalPassportReader::VisualEffectBlur.SwiftUI::Context) -> UIKit::UIVisualEffectView
+  @_Concurrency::MainActor @preconcurrency public func updateUIView(_ uiView: UIKit::UIVisualEffectView, context: UniversalPassportReader::VisualEffectBlur.SwiftUI::Context)
+  public typealias Body = Swift::Never
+  public typealias Coordinator = Swift::Void
+  public typealias UIViewType = UIKit::UIVisualEffectView
 }
-extension UniversalPassportReader::ScanningHUDView : Swift::Sendable {}
-extension UniversalPassportReader::VisualEffectBlur : Swift::Sendable {}
+@_Concurrency::MainActor @preconcurrency public struct ShimmerEffect : SwiftUICore::ViewModifier {
+  @_Concurrency::MainActor @preconcurrency public init()
+  @_Concurrency::MainActor @preconcurrency public func body(content: UniversalPassportReader::ShimmerEffect.SwiftUICore::Content) -> some SwiftUICore::View
+  
+  public typealias Body = @_opaqueReturnTypeOf("$s23UniversalPassportReader13ShimmerEffectV4body7contentQr7SwiftUI21_ViewModifier_ContentVyACG_tF", 0) __
+}
+extension SwiftUICore::View {
+  @_Concurrency::MainActor @preconcurrency public func shimmer() -> some SwiftUICore::View
+  
+}
 extension UniversalPassportReader::CameraPreview : Swift::Sendable {}
 extension UniversalPassportReader::PassportScannerView : Swift::Sendable {}
 extension UniversalPassportReader::ResultPresentationView : Swift::Sendable {}
+extension UniversalPassportReader::ScanningHUDView : Swift::Sendable {}
+extension UniversalPassportReader::VisualEffectBlur : Swift::Sendable {}
 extension UniversalPassportReader::ShimmerEffect : Swift::Sendable {}

@@ -30,9 +30,12 @@ schemes:
   UniversalPassportReader:
     build:
       targets:
-        UniversalPassportReader: [all]
-        UniversalPassportReaderTests: [all]
+        UniversalPassportReader: [build, test, run, archive, profile, analyze]
+        UniversalPassportReaderTests: [build, test]
     test:
       targets:
         - UniversalPassportReaderTests
+    archive:
+      config: Release
+
 

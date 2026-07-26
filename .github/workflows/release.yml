@@ -23,7 +23,7 @@ jobs:
           xcode-version: 'latest-stable'
 
       - name: Install xcodegen
-        run: brew install xcodegen
+        run: arch -arm64 brew install xcodegen || brew install xcodegen
 
       - name: Generate UniversalPassportReader Project
         run: xcodegen --spec UniversalPassportReader/project.yml --project UniversalPassportReader/

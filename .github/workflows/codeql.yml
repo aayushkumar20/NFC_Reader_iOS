@@ -35,7 +35,7 @@ jobs:
 
       - name: Install dependencies & Build
         run: |
-          brew install xcodegen
+          arch -arm64 brew install xcodegen || brew install xcodegen
           xcodegen --spec UniversalPassportReader/project.yml --project UniversalPassportReader/
           
           # Build framework to allow CodeQL to trace compiles

@@ -4,6 +4,14 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Headers/ASN1Parser.hpp</key>
+		<data>
+		toHSHyUwJJDtzOyCUjuA7uwJsUw=
+		</data>
+		<key>Headers/PassportCrypto.hpp</key>
+		<data>
+		U9hA6s31WJ9Hrjj88+LoJY+RCdU=
+		</data>
 		<key>Headers/UniversalPassportReader-Swift.h</key>
 		<data>
 		2bS81isAIVrm/zlBWyFYXj8QtQ0=
@@ -22,11 +30,11 @@
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		aCj+4emCjQxB3CThDWielECqcg8=
+		pr4F21mbUGktQguWftquwd/0Fp8=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		yc9ZAsTX9d9FPNf49PDvxh7AH40=
+		IxA/T5gZLtXl8BRxtqX0DdEjFp8=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -34,19 +42,19 @@
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		yc9ZAsTX9d9FPNf49PDvxh7AH40=
+		IxA/T5gZLtXl8BRxtqX0DdEjFp8=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		SsLbulp7pQTRTI/47yp/zV5Qxus=
+		kvg4WJv2BAIKCpBYgknpLfWe23Q=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		aCj+4emCjQxB3CThDWielECqcg8=
+		pr4F21mbUGktQguWftquwd/0Fp8=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		sC3sfoYL5PaPl4NzqoCHsqqBAdI=
+		tXSOknTPuOQNAS9URO7evRoluLc=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -54,11 +62,11 @@
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		sC3sfoYL5PaPl4NzqoCHsqqBAdI=
+		tXSOknTPuOQNAS9URO7evRoluLc=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		zrNcRxVhKQDDrVymO+tRS7S6qls=
+		iEV6S8VwhUTnLzYSp7626dXhUHo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -67,6 +75,20 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Headers/ASN1Parser.hpp</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Oe/LdLlZU1bS4luowN0wO9aY28v4TkO1eeXXCcUhHwI=
+			</data>
+		</dict>
+		<key>Headers/PassportCrypto.hpp</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			8fCCqeUzcgEi9EjrHo5jdBKllQa1brJI7RrSPnpvdxk=
+			</data>
+		</dict>
 		<key>Headers/UniversalPassportReader-Swift.h</key>
 		<dict>
 			<key>hash2</key>
@@ -92,14 +114,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CcVpXSPbvGgfeCe/+gUhjyw15+aYxsSptuuoDlHDuxQ=
+			ODqnGC1AdKXDfjoAVaVOawIPFKcmjljwGSjXKYbSUsY=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			t0z8H0Y43bMg8fa6I+AIvTLLr/sW+PmpTzwwti4BSeg=
+			q2/QUZXwSpHzoZmJyopUhHuOgkcJGsqgsDpFSem9uvE=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -113,28 +135,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			t0z8H0Y43bMg8fa6I+AIvTLLr/sW+PmpTzwwti4BSeg=
+			q2/QUZXwSpHzoZmJyopUhHuOgkcJGsqgsDpFSem9uvE=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xXfWp05JPPAd3lQWRcVSFgaNjeRqu9En5vCuho003qw=
+			LWTJVMrEnwVbWPqLEG21wRmZjhb48qisCMrAZ651oAs=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CcVpXSPbvGgfeCe/+gUhjyw15+aYxsSptuuoDlHDuxQ=
+			ODqnGC1AdKXDfjoAVaVOawIPFKcmjljwGSjXKYbSUsY=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WHfa6DQc10ILYIAaN0eZS0Oj8UKJDwy3aZrGpr59HDo=
+			IGWzDlMX85DJep3rnPT2TlxEpnSEbCDRR0Bpdu4Z9Kc=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -148,14 +170,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			WHfa6DQc10ILYIAaN0eZS0Oj8UKJDwy3aZrGpr59HDo=
+			IGWzDlMX85DJep3rnPT2TlxEpnSEbCDRR0Bpdu4Z9Kc=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ETQceeLIU/U5IMqLpesgMclwMRzCLHyHbasGcAxdvZo=
+			gvpoGWQho6It5dqB3xgJYkjcs+YjjPrjxjNyijFbVyk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
