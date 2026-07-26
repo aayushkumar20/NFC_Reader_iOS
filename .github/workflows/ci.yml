@@ -41,10 +41,12 @@ jobs:
 
       - name: Run Framework Unit Tests
         run: |
+          SIM_NAME=$(xcrun simctl list devices | grep -E "iPhone" | grep -v "unavailable" | head -n 1 | sed -E 's/^[[:space:]]*([^(]+)[[:space:]]*\(([^)]+)\).*/\1/' | xargs)
+          echo "Selected Simulator: $SIM_NAME"
           xcodebuild -project UniversalPassportReader/UniversalPassportReader.xcodeproj \
                      -scheme UniversalPassportReader \
                      -sdk iphonesimulator \
-                     -destination "generic/platform=iOS Simulator" \
+                     -destination "platform=iOS Simulator,name=$SIM_NAME" \
                      test
 
       - name: Build xcframework

@@ -1,5 +1,8 @@
 # UniversalPassportReader iOS Framework
 
+[![iOS Build, Test, and Quality CI](https://github.com/aayushkumar20/NFC_Reader_iOS/actions/workflows/ci.yml/badge.svg)](https://github.com/aayushkumar20/NFC_Reader_iOS/actions/workflows/ci.yml)
+[![CodeQL Security Scan](https://github.com/aayushkumar20/NFC_Reader_iOS/actions/workflows/codeql.yml/badge.svg)](https://github.com/aayushkumar20/NFC_Reader_iOS/actions/workflows/codeql.yml)
+
 ![Universal NFC Reader Banner](universal_nfc_reader_banner.png)
 
 A premium, production-grade iOS framework built from scratch with **zero external dependencies** to read and verify NFC-enabled electronic passports (ePassports) and identity cards (eIDs) from all over the world. 
@@ -163,11 +166,33 @@ GitHub's automated security analysis database scans the repository weekly and on
 
 ## 📱 Client App Setup & Integration
 
-To embed the reader framework into your custom app:
-1. Embed `UniversalPassportReader.xcframework` in your Xcode target.
-2. Set target settings -> **Frameworks, Libraries, and Embedded Content** -> **Embed & Sign**.
-3. Enable the **Near Field Communication Tag Reading** capability in signing settings.
-4. Add the following keys to your project's `Info.plist`:
+You can integrate the library using one of the following methods:
+
+### Method 1: CocoaPods Integration (Recommended)
+Add the pod specification targeting the repository source to your `Podfile`:
+
+```ruby
+target 'YourAppTarget' do
+  use_frameworks!
+  
+  # Point directly to the git repository
+  pod 'UniversalPassportReader', :git => 'https://github.com/aayushkumar20/NFC_Reader_iOS.git', :tag => 'v1.0.0'
+end
+```
+Run `pod install` in the terminal to retrieve and configure the package bundle.
+
+### Method 2: Manual XCFramework Integration
+1. Download the compiled `UniversalPassportReader.xcframework` archive from the latest GitHub Release.
+2. Drag `UniversalPassportReader.xcframework` into your project target's **Frameworks, Libraries, and Embedded Content** section.
+3. Choose **Embed & Sign**.
+
+### Method 3: Direct Swift Package Manager (SPM)
+- Select **File -> Add Packages...** and add the repository URL `https://github.com/aayushkumar20/NFC_Reader_iOS.git` to fetch compilation schemas.
+
+---
+
+### Platform Permissions & Capabilities
+Enable the **Near Field Communication Tag Reading** capability under project signing options and add the following keys to your application target's `Info.plist`:
 
 ```xml
 <key>NSCameraUsageDescription</key>
