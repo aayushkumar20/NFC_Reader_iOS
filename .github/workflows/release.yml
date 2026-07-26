@@ -42,9 +42,25 @@ jobs:
         run: |
           chmod +x build_xcframework.sh
           ./build_xcframework.sh
+          zip -r UniversalPassportReader.xcframework.zip UniversalPassportReader.xcframework
 
-      - name: Compress XCFramework
-        run: zip -r UniversalPassportReader.xcframework.zip UniversalPassportReader.xcframework
+      - name: Archive Demo App (Unsigned)
+        run: |
+          xcodebuild archive \
+            -project PassportReaderDemo/PassportReaderDemo.xcodeproj \
+            -scheme PassportReaderDemo \
+            -destination "generic/platform=iOS" \
+            -archivePath archives/PassportReaderDemo.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            PROVISIONING_PROFILE_SPECIFIER=""
+
+      - name: Build IPA Package
+        run: |
+          mkdir -p Payload
+          cp -r archives/PassportReaderDemo.xcarchive/Products/Applications/PassportReaderDemo.app Payload/
+          zip -r PassportReaderDemo.ipa Payload
 
       - name: Get Commit Message
         id: get_commit
@@ -59,6 +75,7 @@ jobs:
           files: |
             UniversalPassportReader.xcframework.zip
             UniversalPassportReader.podspec
+            PassportReaderDemo.ipa
           name: Release ${{ github.ref_name }} - ${{ steps.get_commit.outputs.msg }}
           body: |
             ## 🚀 UniversalPassportReader iOS Framework ${{ github.ref_name }}

@@ -166,8 +166,13 @@ GitHub's automated security analysis database scans the repository weekly and on
 > 
 > However, the workflow still runs the complete scan and packages the output as a build artifact. You can download the compiled **`security-report-c-cpp`** and **`security-report-swift`** `.sarif` files from the Actions run dashboard and upload them to [Microsoft SARIF Web Viewer](https://sarifviewer.azurewebsites.net/) or open them in VS Code / Xcode SARIF extensions to view the security audit findings.
 
+### 3. Automated Release Package & Demo App IPA (`release.yml`)
+Triggers on version tag pushes (e.g., `v1.0.0`) to build production artifacts:
+* **Framework Binary**: Compiles the final production slices and compresses `UniversalPassportReader.xcframework.zip`.
+- **Demo App IPA**: Builds an **unsigned testing IPA** `PassportReaderDemo.ipa`. Developers can download this IPA, sign it with their own Apple Developer Certificate/custom bundle ID (using AltStore, Sideloadly, or Xcode), and sideload it directly onto physical devices to test biometric card reading live.
+* **Upload**: Publishes the artifacts automatically to the GitHub Release matching the tag.
 
----
+----
 
 ## 📱 Client App Setup & Integration
 
