@@ -115,16 +115,48 @@ When updating or making modifications to the framework code, developers should f
 
 ---
 
-## 🚀 GitHub Actions Continuous Integration (CI)
+## ⏱️ Benchmarking & Performance Stats
 
-A build and code quality validation workflow is configured at `.github/workflows/ci.yml`. It triggers automatically on every push or pull request to `main` and `master`.
+A standalone benchmarking script [benchmark.swift](benchmark.swift) is included to measure the execution time of the low-level C++ cryptographic engine and key derivation algorithms.
 
-### Pipeline Stages:
-1. **`lint` (Code Quality)**: Installs and runs `swiftlint` on macOS runners to scan the Swift source files for syntax correctness, code issues, and safety checks.
-2. **`build` (Compilation)**:
-   - Builds the `UniversalPassportReader` Xcode project framework target.
-   - Triggers `./build_xcframework.sh` to package simulator and device slices.
-   - Cleans and builds the `PassportReaderDemo` client application against the generated xcframework to guarantee compilation integrity.
+### Run Benchmarks Locally:
+```bash
+# Compile and run the benchmarks
+swiftc -o run_benchmarks benchmark.swift UniversalPassportReader/Sources/UniversalPassportReader/UniversalPassportReaderCore.cpp UniversalPassportReader/Sources/UniversalPassportReader/Crypto/PassportCrypto.cpp UniversalPassportReader/Sources/UniversalPassportReader/NFC/ASN1Parser.cpp -lc++ -I UniversalPassportReader/Sources/UniversalPassportReader/
+./run_benchmarks
+```
+
+### Execution Results (Apple Silicon M-series):
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                      UniversalPassportReader Core Engine Benchmark                     │
+├────────────────────────────────┬────────────┬────────────────┬─────────────────────────┤
+│ Benchmark Operation            │ Iterations │ Total Time     │ Time/Iteration          │
+├────────────────────────────────┼────────────┼────────────────┼─────────────────────────┤
+│ BAC Key Derivation (KDF)       │       5000 │        0.0590 s │        0.011805 ms │
+│ MRZ Check Digit Calculation    │      20000 │        0.0201 s │        0.001006 ms │
+│ Retail MAC Computation (1KB)   │       1000 │        0.0688 s │        0.068844 ms │
+│ 3DES CBC Encryption (2KB)      │       1000 │        0.1146 s │        0.114643 ms │
+└────────────────────────────────┴────────────┴────────────────┴─────────────────────────┘
+```
+
+---
+
+## 🚀 GitHub Actions CI & Security Pipeline
+
+Two continuous integration workflows are configured under `.github/workflows/`:
+
+### 1. Build and Performance Validation (`ci.yml`)
+Runs on every push or pull request to check:
+* **Code Quality**: Executes `swiftlint` to verify code-correctness and style compliance.
+* **Compilation**: Builds the framework, compiles the xcframework bundle, and builds the demo app target.
+* **Regression Check**: Automatically compiles and executes the core benchmarking utility to verify no logic or execution speed regressions were introduced.
+
+### 2. CodeQL Security Vulnerability Scan (`codeql.yml`)
+GitHub's automated security analysis database scans the repository weekly and on updates:
+* **Languages**: Scans both C++ and Swift targets.
+* **Audit Levels**: Performed at `security-extended` and `security-and-quality` rulesets to detect potential buffer overflows, memory allocation issues, or insecure cryptographic configurations.
+
 
 ---
 

@@ -53,3 +53,9 @@ jobs:
                      -sdk iphonesimulator \
                      -destination "generic/platform=iOS Simulator" \
                      clean build
+
+      - name: Compile and Run Performance Benchmarks
+        run: |
+          swiftc -o run_benchmarks benchmark.swift UniversalPassportReader/Sources/UniversalPassportReader/UniversalPassportReaderCore.cpp UniversalPassportReader/Sources/UniversalPassportReader/Crypto/PassportCrypto.cpp UniversalPassportReader/Sources/UniversalPassportReader/NFC/ASN1Parser.cpp -lc++ -I UniversalPassportReader/Sources/UniversalPassportReader/
+          ./run_benchmarks
+
