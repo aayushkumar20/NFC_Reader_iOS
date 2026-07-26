@@ -21,8 +21,8 @@ disabled_rules:
   - unused_closure_parameter
   - for_where
   - force_cast
+  - empty_count
 
 opt_in_rules:
   # Keep only critical safety checks
-  - empty_count
   - vertical_whitespace
