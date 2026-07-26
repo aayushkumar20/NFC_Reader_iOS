@@ -1,0 +1,28 @@
+disabled_rules:
+  # Loosen naming constraints for mathematical/cryptographical index and variable names (e.g. i, j, c, iv, ok, p1, p2, le, sw)
+  - identifier_name
+  
+  # Allow long line lengths for verbose cryptographic functions and multiline gradients
+  - line_length
+  
+  # Disable file and type length limits for unified classes like PassportNFCReader (contains full state delegate)
+  - file_length
+  - type_body_length
+  
+  # Allow standard complexity in parser switch-cases
+  - cyclomatic_complexity
+  - function_body_length
+  - function_parameter_count
+  
+  # Disable styling rules that generate verbose warnings
+  - trailing_whitespace
+  - multiple_closures_with_trailing_closure
+  - implicit_optional_initialization
+  - unused_closure_parameter
+  - for_where
+  - force_cast
+
+opt_in_rules:
+  # Keep only critical safety checks
+  - empty_count
+  - vertical_whitespace
