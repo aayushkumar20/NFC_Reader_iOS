@@ -161,6 +161,11 @@ GitHub's automated security analysis database scans the repository weekly and on
 * **Languages**: Scans both C++ and Swift targets.
 * **Audit Levels**: Performed at `security-extended` and `security-and-quality` rulesets to detect potential buffer overflows, memory allocation issues, or insecure cryptographic configurations.
 
+> [!NOTE]
+> **Viewing the Security Reports**: Because this is a private repository and GitHub Advanced Security (GHAS) is not enabled under repository settings, the live security dashboard score is not populated directly on the GitHub Security tab.
+> 
+> However, the workflow still runs the complete scan and packages the output as a build artifact. You can download the compiled **`security-report-c-cpp`** and **`security-report-swift`** `.sarif` files from the Actions run dashboard and upload them to [Microsoft SARIF Web Viewer](https://sarifviewer.azurewebsites.net/) or open them in VS Code / Xcode SARIF extensions to view the security audit findings.
+
 
 ---
 

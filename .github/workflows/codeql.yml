@@ -51,8 +51,13 @@ jobs:
           category: "/language:${{ matrix.language }}"
           upload: false
 
+      - name: Copy SARIF Reports to Workspace
+        run: |
+          mkdir -p results
+          cp ../results/*.sarif ./results/
+
       - name: Upload SARIF Security Report
         uses: actions/upload-artifact@v4
         with:
           name: security-report-${{ matrix.language }}
-          path: ../results/*.sarif
+          path: results/*.sarif
