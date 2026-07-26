@@ -164,12 +164,7 @@ Runs on every push or pull request to check:
 ### 2. CodeQL Security Vulnerability Scan (`codeql.yml`)
 GitHub's automated security analysis database scans the repository weekly and on updates:
 * **Languages**: Scans both C++ and Swift targets.
-* **Audit Levels**: Performed at `security-extended` and `security-and-quality` rulesets to detect potential buffer overflows, memory allocation issues, or insecure cryptographic configurations.
-
-> [!NOTE]
-> **Viewing the Security Reports**: Because this is a private repository and GitHub Advanced Security (GHAS) is not enabled under repository settings, the live security dashboard score is not populated directly on the GitHub Security tab.
-> 
-> However, the workflow still runs the complete scan and packages the output as a build artifact. You can download the compiled **`security-report-c-cpp`** and **`security-report-swift`** `.sarif` files from the Actions run dashboard and upload them to [Microsoft SARIF Web Viewer](https://sarifviewer.azurewebsites.net/) or open them in VS Code / Xcode SARIF extensions to view the security audit findings.
+* **Audit Levels**: Performed at `security-extended` and `security-and-quality` rulesets to detect potential buffer overflows, memory allocation issues, or insecure cryptographic configurations. Results are uploaded directly to the repository's **Security -> Code scanning** alerts tab on GitHub.
 
 ### 3. Automated Release Package & Demo App IPA (`release.yml`)
 Triggers on version tag pushes (e.g., `v1.0.0`) to build production artifacts:
