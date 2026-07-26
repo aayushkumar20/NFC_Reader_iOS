@@ -46,7 +46,7 @@
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		kvg4WJv2BAIKCpBYgknpLfWe23Q=
+		+AYXAFCPMQ+BxCo72nS97mQn5O0=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		iEV6S8VwhUTnLzYSp7626dXhUHo=
+		Xb0cNU1q2AWnZQqwXcK5odxTh+E=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -142,7 +142,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LWTJVMrEnwVbWPqLEG21wRmZjhb48qisCMrAZ651oAs=
+			u930hA40w5wXMniFvsiv5F/TUSFzeWjwhD2kotXu2No=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -177,7 +177,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gvpoGWQho6It5dqB3xgJYkjcs+YjjPrjxjNyijFbVyk=
+			nmqAP5Qrc1Tj62dk5sJluh3GB/9Cqc/wSDEG0olZ1x4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

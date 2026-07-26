@@ -76,7 +76,11 @@ public struct PassportScannerView: View {
                 isNFCActive = true
                 nfcProgress = 0.0
                 nfcStatus = "Hold device close to passport chip..."
+                #if targetEnvironment(simulator)
+                mockNFCProgress()
+                #else
                 nfcReader.startReading(mrz: nil, authKey: authKey)
+                #endif
             } else {
                 scanner.startScanning()
             }
@@ -157,6 +161,50 @@ public struct PassportScannerView: View {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(type)
     }
+    
+    #if targetEnvironment(simulator)
+    private func mockNFCProgress() {
+        var progress = 0.0
+        nfcStatus = "Reading Data Group 1 (MRZ)..."
+        Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true) { timer in
+            progress += 0.08
+            if progress <= 0.4 {
+                self.nfcProgress = progress
+                self.nfcStatus = "Reading Data Group 1 (MRZ)... \(Int(progress * 100))%"
+            } else if progress <= 0.8 {
+                self.nfcProgress = progress
+                self.nfcStatus = "Reading Data Group 2 (Biometrics)... \(Int(progress * 100))%"
+            } else if progress < 1.0 {
+                self.nfcProgress = progress
+                self.nfcStatus = "Verifying Passive Authentication... \(Int(progress * 100))%"
+            } else {
+                timer.invalidate()
+                self.nfcProgress = 1.0
+                self.nfcStatus = "Decryption successful!"
+                
+                // Show result after a brief delay
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    triggerHapticFeedback(.success)
+                    self.scannedDocument = DocumentData(
+                        documentType: "Passport",
+                        documentNumber: "L898902C3",
+                        issuingCountry: "IND",
+                        expiryDate: Date(),
+                        lastName: "SHARMA",
+                        firstName: "RAHUL",
+                        nationality: "IND",
+                        dateOfBirth: Date(),
+                        gender: "M",
+                        personalNumber: nil,
+                        faceImage: nil,
+                        isBACAuthenticated: true,
+                        isPassiveAuthenticated: true
+                    )
+                }
+            }
+        }
+    }
+    #endif
 }
 extension PassportReaderError: Identifiable {
     public var id: String {

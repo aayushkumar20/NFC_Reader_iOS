@@ -179,6 +179,42 @@ struct ContentView: View {
         .sheet(isPresented: $showingAuthOptions) {
             AuthOptionsView(isPresented: $showingAuthOptions, selectedKey: $selectedAuthKey, startScanTrigger: $showingScanner)
         }
+        .onAppear {
+            if ProcessInfo.processInfo.arguments.contains("--auto-scan-mrz") {
+                let docNum = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("--doc-num=") })?.replacingOccurrences(of: "--doc-num=", with: "") ?? "A12345678"
+                let birthDate = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("--birth-date=") })?.replacingOccurrences(of: "--birth-date=", with: "") ?? "931012"
+                let expiryDate = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("--expiry-date=") })?.replacingOccurrences(of: "--expiry-date=", with: "") ?? "281012"
+                
+                self.selectedAuthKey = .mrz(documentNumber: docNum, birthDateString: birthDate, expiryDateString: expiryDate)
+                self.showingScanner = true
+            } else if ProcessInfo.processInfo.arguments.contains("--auto-show-sheet") {
+                self.showingAuthOptions = true
+            } else if ProcessInfo.processInfo.arguments.contains("--auto-show-success") {
+                let docType = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("--doc-type=") })?.replacingOccurrences(of: "--doc-type=", with: "") ?? "Passport"
+                let docNum = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("--doc-num=") })?.replacingOccurrences(of: "--doc-num=", with: "") ?? "A12345678"
+                let country = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("--country=") })?.replacingOccurrences(of: "--country=", with: "") ?? "USA"
+                let lastName = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("--last-name=") })?.replacingOccurrences(of: "--last-name=", with: "") ?? "DOE"
+                let firstName = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("--first-name=") })?.replacingOccurrences(of: "--first-name=", with: "") ?? "JOHN"
+                let nationality = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("--nationality=") })?.replacingOccurrences(of: "--nationality=", with: "") ?? "USA"
+                let gender = ProcessInfo.processInfo.arguments.first(where: { $0.hasPrefix("--gender=") })?.replacingOccurrences(of: "--gender=", with: "") ?? "M"
+                
+                self.lastScannedDoc = DocumentData(
+                    documentType: docType,
+                    documentNumber: docNum,
+                    issuingCountry: country,
+                    expiryDate: Date(),
+                    lastName: lastName,
+                    firstName: firstName,
+                    nationality: nationality,
+                    dateOfBirth: Date(),
+                    gender: gender,
+                    personalNumber: nil,
+                    faceImage: nil,
+                    isBACAuthenticated: true,
+                    isPassiveAuthenticated: false
+                )
+            }
+        }
         .preferredColorScheme(.dark)
     }
 }

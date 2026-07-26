@@ -5,6 +5,11 @@
 
 ![Universal NFC Reader Banner](universal_nfc_reader_banner.png)
 
+### 📱 Live Application Walkthrough Flow
+<p align="center">
+  <img src="app_flow_animation.gif" width="300" alt="App Flow Walkthrough" />
+</p>
+
 A premium, production-grade iOS framework built from scratch with **zero external dependencies** to read and verify NFC-enabled electronic passports (ePassports) and identity cards (eIDs) from all over the world. 
 
 It implements the Machine Readable Travel Document (MRTD) standard defined by the **International Civil Aviation Organization (ICAO Doc 9303)**.
