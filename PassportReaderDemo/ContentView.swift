@@ -3,6 +3,8 @@ import UniversalPassportReader
 
 struct ContentView: View {
     @State private var showingScanner = false
+    @State private var showingAuthOptions = false
+    @State private var selectedAuthKey: PassportAuthKey? = nil
     @State private var lastScannedDoc: DocumentData? = nil
     
     var body: some View {
@@ -78,9 +80,9 @@ struct ContentView: View {
                         Divider().background(Color.white.opacity(0.1))
                         
                         HStack {
-                            Label("BAC Verified", systemImage: "shield.fill")
+                            Label(doc.isBACAuthenticated ? "BAC Verified" : "Direct Mode", systemImage: doc.isBACAuthenticated ? "shield.fill" : "shield.slash.fill")
                                 .font(.system(size: 12, weight: .bold))
-                                .foregroundColor(.cyan)
+                                .foregroundColor(doc.isBACAuthenticated ? .cyan : .orange)
                             Spacer()
                             Text(doc.issuingCountry)
                                 .font(.system(size: 12, weight: .bold))
@@ -113,36 +115,60 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                // Call to Action button
-                Button(action: {
-                    showingScanner = true
-                }) {
-                    HStack(spacing: 12) {
-                        Image(systemName: "viewfinder.circle.fill")
-                            .font(.system(size: 20, weight: .bold))
-                        
-                        Text("Scan Passport / ID Card")
-                            .font(.system(size: 17, weight: .bold, design: .rounded))
-                    }
-                    .foregroundColor(.black)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .background(
-                        LinearGradient(
-                            colors: [Color.cyan, Color.blue],
-                            startPoint: .leading,
-                            endPoint: .trailing
+                // Call to Action buttons
+                VStack(spacing: 12) {
+                    Button(action: {
+                        selectedAuthKey = nil
+                        showingScanner = true
+                    }) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "viewfinder.circle.fill")
+                                .font(.system(size: 20, weight: .bold))
+                            
+                            Text("Scan Passport / ID Card")
+                                .font(.system(size: 17, weight: .bold, design: .rounded))
+                        }
+                        .foregroundColor(.black)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(
+                            LinearGradient(
+                                colors: [Color.cyan, Color.blue],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
                         )
-                    )
-                    .cornerRadius(16)
-                    .shadow(color: Color.cyan.opacity(0.35), radius: 12, y: 4)
+                        .cornerRadius(16)
+                        .shadow(color: Color.cyan.opacity(0.35), radius: 12, y: 4)
+                    }
+                    
+                    Button(action: {
+                        showingAuthOptions = true
+                    }) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "key.fill")
+                                .font(.system(size: 14, weight: .bold))
+                            
+                            Text("Manual Keys / Custom Auth")
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                        }
+                        .foregroundColor(.cyan)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .background(Color.white.opacity(0.05))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.cyan.opacity(0.3), lineWidth: 1)
+                        )
+                    }
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 32)
             }
         }
         .fullScreenCover(isPresented: $showingScanner) {
-            PassportScannerView(onScanCompleted: { doc in
+            PassportScannerView(authKey: selectedAuthKey, onScanCompleted: { doc in
                 withAnimation(.spring()) {
                     self.lastScannedDoc = doc
                 }
@@ -150,6 +176,195 @@ struct ContentView: View {
                 showingScanner = false
             })
         }
+        .sheet(isPresented: $showingAuthOptions) {
+            AuthOptionsView(isPresented: $showingAuthOptions, selectedKey: $selectedAuthKey, startScanTrigger: $showingScanner)
+        }
         .preferredColorScheme(.dark)
+    }
+}
+
+struct AuthOptionsView: View {
+    @Binding var isPresented: Bool
+    @Binding var selectedKey: PassportAuthKey?
+    @Binding var startScanTrigger: Bool
+    
+    @State private var authMode = 0 // 0: Manual MRZ, 1: CAN, 2: Custom Hex, 3: None/Plain
+    
+    // Manual MRZ fields
+    @State private var documentNumber = ""
+    @State private var birthDate = ""     // YYMMDD
+    @State private var expiryDate = ""    // YYMMDD
+    
+    // CAN field
+    @State private var canValue = ""
+    
+    // Custom Hex fields
+    @State private var kEncHex = ""
+    @State private var kMacHex = ""
+    
+    var body: some View {
+        NavigationView {
+            ZStack {
+                Color.black.edgesIgnoringSafeArea(.all)
+                
+                // background glow
+                Circle()
+                    .fill(Color.purple.opacity(0.1))
+                    .frame(width: 300, height: 300)
+                    .blur(radius: 60)
+                    .offset(x: -100, y: -100)
+                
+                VStack(spacing: 20) {
+                    Picker("Auth Mode", selection: $authMode) {
+                        Text("Manual MRZ").tag(0)
+                        Text("CAN").tag(1)
+                        Text("Hex Keys").tag(2)
+                        Text("No Auth").tag(3)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding(.horizontal)
+                    .padding(.top, 16)
+                    
+                    ScrollView {
+                        VStack(spacing: 18) {
+                            if authMode == 0 {
+                                // Manual MRZ Input Form
+                                formSection(title: "Document MRZ parameters") {
+                                    VStack(spacing: 12) {
+                                        customTextField(placeholder: "Document Number", text: $documentNumber)
+                                        customTextField(placeholder: "Birth Date (YYMMDD)", text: $birthDate)
+                                        customTextField(placeholder: "Expiry Date (YYMMDD)", text: $expiryDate)
+                                    }
+                                }
+                            } else if authMode == 1 {
+                                // CAN Form
+                                formSection(title: "Card Access Number") {
+                                    customTextField(placeholder: "6-digit CAN (e.g. 123456)", text: $canValue)
+                                }
+                            } else if authMode == 2 {
+                                // Custom Hex Form
+                                formSection(title: "Custom Session Keys (Hex)") {
+                                    VStack(spacing: 12) {
+                                        customTextField(placeholder: "Encryption Key (kEnc, 16 bytes)", text: $kEncHex)
+                                        customTextField(placeholder: "MAC Key (kMac, 16 bytes)", text: $kMacHex)
+                                    }
+                                }
+                            } else {
+                                // Plain Read Explanation
+                                formSection(title: "Direct Reading") {
+                                    Text("This mode bypasses Basic Access Control (BAC) and attempts to read matching document records in plain format. Some unencrypted standard identity cards allow this.")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(.white.opacity(0.6))
+                                        .padding(.vertical, 8)
+                                }
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                    
+                    Spacer()
+                    
+                    // Submit button
+                    Button(action: {
+                        let finalKey: PassportAuthKey
+                        switch authMode {
+                        case 0:
+                            finalKey = .mrz(documentNumber: documentNumber, birthDateString: birthDate, expiryDateString: expiryDate)
+                        case 1:
+                            finalKey = .can(canValue)
+                        case 2:
+                            finalKey = .customHex(kEncHex: kEncHex, kMacHex: kMacHex)
+                        default:
+                            finalKey = .none
+                        }
+                        
+                        selectedKey = finalKey
+                        isPresented = false
+                        // Delay slightly to allow sheet to dismiss before opening scanner fullScreenCover
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                            startScanTrigger = true
+                        }
+                    }) {
+                        Text("Start NFC Reader")
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(
+                                LinearGradient(
+                                    colors: [Color.cyan, Color.purple],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .cornerRadius(12)
+                    }
+                    .padding(.horizontal)
+                    .padding(.bottom, 24)
+                }
+            }
+            .navigationTitle("NFC Credentials")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        isPresented = false
+                    }
+                    .foregroundColor(.white.opacity(0.6))
+                }
+            }
+        }
+        .preferredColorScheme(.dark)
+    }
+    
+    private func formSection<Content: View>(title: String, @ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title.uppercased())
+                .font(.system(size: 11, weight: .bold))
+                .foregroundColor(.cyan)
+                .padding(.leading, 4)
+            
+            content()
+                .padding(.all, 14)
+                .background(Color.white.opacity(0.04))
+                .cornerRadius(12)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                )
+        }
+        .padding(.top, 10)
+    }
+    
+    private func customTextField(placeholder: String, text: Binding<String>) -> some View {
+        TextField("", text: text)
+            .placeholder(when: text.wrappedValue.isEmpty) {
+                Text(placeholder).foregroundColor(.white.opacity(0.35))
+            }
+            .font(.system(size: 14, design: .monospaced))
+            .foregroundColor(.white)
+            .padding(.all, 12)
+            .background(Color.black.opacity(0.3))
+            .cornerRadius(8)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.white.opacity(0.12), lineWidth: 1)
+            )
+            .disableAutocorrection(true)
+            .autocapitalization(.none)
+    }
+}
+
+// Helper for placeholder in standard TextField
+extension View {
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content) -> some View {
+
+        ZStack(alignment: alignment) {
+            placeholder().opacity(shouldShow ? 1 : 0)
+            self
+        }
     }
 }

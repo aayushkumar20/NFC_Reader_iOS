@@ -98,4 +98,19 @@ public struct PassportCrypto {
         let ifdSuffix = Array(ifdNonce.suffix(4))
         return piccSuffix + ifdSuffix
     }
+    
+    public static func hexToBytes(_ hex: String) -> [UInt8]? {
+        let cleanHex = hex.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "")
+        guard cleanHex.count % 2 == 0 else { return nil }
+        var bytes = [UInt8]()
+        var index = cleanHex.startIndex
+        while index < cleanHex.endIndex {
+            let nextIndex = cleanHex.index(index, offsetBy: 2)
+            let byteString = cleanHex[index..<nextIndex]
+            guard let byte = UInt8(byteString, radix: 16) else { return nil }
+            bytes.append(byte)
+            index = nextIndex
+        }
+        return bytes
+    }
 }

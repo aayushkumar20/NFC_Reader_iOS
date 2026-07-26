@@ -15,21 +15,35 @@ public struct PassportScannerView: View {
     
     public var onScanCompleted: (DocumentData) -> Void
     public var onDismiss: () -> Void
+    private let initialAuthKey: PassportAuthKey?
     
-    public init(onScanCompleted: @escaping (DocumentData) -> Void, onDismiss: @escaping () -> Void) {
+    public init(authKey: PassportAuthKey? = nil, onScanCompleted: @escaping (DocumentData) -> Void, onDismiss: @escaping () -> Void) {
+        self.initialAuthKey = authKey
         self.onScanCompleted = onScanCompleted
         self.onDismiss = onDismiss
     }
     
     public var body: some View {
         ZStack {
-            // Camera feed preview
-            CameraPreview(session: scanner.captureSession)
+            if initialAuthKey == nil {
+                // Camera feed preview
+                CameraPreview(session: scanner.captureSession)
+                    .edgesIgnoringSafeArea(.all)
+            } else {
+                // Pulse styling background for manual scan
+                Color.black.edgesIgnoringSafeArea(.all)
+                RadialGradient(
+                    colors: [Color.cyan.opacity(0.15), Color.black],
+                    center: .center,
+                    startRadius: 20,
+                    endRadius: 300
+                )
                 .edgesIgnoringSafeArea(.all)
+            }
             
             // HUD Overlay for camera aligner & NFC reading stages
             ScanningHUDView(
-                instruction: instruction,
+                instruction: initialAuthKey == nil ? instruction : "Hold device close to chip...",
                 isNFCActive: isNFCActive,
                 nfcProgress: nfcProgress,
                 nfcStatus: nfcStatus
@@ -58,7 +72,14 @@ public struct PassportScannerView: View {
         }
         .onAppear {
             setupScannerCallbacks()
-            scanner.startScanning()
+            if let authKey = initialAuthKey {
+                isNFCActive = true
+                nfcProgress = 0.0
+                nfcStatus = "Hold device close to passport chip..."
+                nfcReader.startReading(mrz: nil, authKey: authKey)
+            } else {
+                scanner.startScanning()
+            }
         }
         .onDisappear {
             scanner.stopScanning()
@@ -83,7 +104,14 @@ public struct PassportScannerView: View {
                 primaryButton: .default(Text("Try Again")) {
                     readerError = nil
                     isNFCActive = false
-                    scanner.startScanning()
+                    if let authKey = initialAuthKey {
+                        isNFCActive = true
+                        nfcProgress = 0.0
+                        nfcStatus = "Hold device close to passport chip..."
+                        nfcReader.startReading(mrz: nil, authKey: authKey)
+                    } else {
+                        scanner.startScanning()
+                    }
                 },
                 secondaryButton: .cancel(Text("Cancel")) {
                     readerError = nil
@@ -94,6 +122,21 @@ public struct PassportScannerView: View {
     }
     
     private func setupScannerCallbacks() {
+        nfcReader.onProgress = { status, progress in
+            self.nfcStatus = status
+            self.nfcProgress = progress
+        }
+        
+        nfcReader.onCompletion = { document in
+            triggerHapticFeedback(.success)
+            self.scannedDocument = document
+        }
+        
+        nfcReader.onError = { error in
+            triggerHapticFeedback(.error)
+            self.readerError = error
+        }
+        
         scanner.onMRZFound = { parsedMRZ in
             triggerHapticFeedback(.success)
             
@@ -101,22 +144,12 @@ public struct PassportScannerView: View {
             nfcProgress = 0.0
             nfcStatus = "Hold device close to passport chip..."
             
-            nfcReader.onProgress = { status, progress in
-                self.nfcStatus = status
-                self.nfcProgress = progress
-            }
-            
-            nfcReader.onCompletion = { document in
-                triggerHapticFeedback(.success)
-                self.scannedDocument = document
-            }
-            
-            nfcReader.onError = { error in
-                triggerHapticFeedback(.error)
-                self.readerError = error
-            }
-            
-            nfcReader.startReading(mrz: parsedMRZ)
+            let authKey = PassportAuthKey.mrz(
+                documentNumber: parsedMRZ.documentNumber,
+                birthDateString: parsedMRZ.birthDateString,
+                expiryDateString: parsedMRZ.expiryDateString
+            )
+            nfcReader.startReading(mrz: parsedMRZ, authKey: authKey)
         }
     }
     

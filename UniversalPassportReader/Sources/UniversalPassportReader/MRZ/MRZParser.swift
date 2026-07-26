@@ -110,9 +110,19 @@ public class MRZParser {
     
     // TD3 Format - 2 lines, 44 characters (Standard Passport)
     private static func parseTD3(line1: String, line2: String) -> ParsedMRZ? {
-        guard line1.hasPrefix("P") else { return nil }
-        
         // Line 1: Type (2) + Issuing Country (3) + Names (39)
+        let docType = String(line1.prefix(2))
+        let typeStr: String
+        if docType.hasPrefix("P") {
+            typeStr = "Passport"
+        } else if docType.hasPrefix("V") {
+            typeStr = "Visa"
+        } else if docType.hasPrefix("I") || docType.hasPrefix("A") || docType.hasPrefix("C") {
+            typeStr = "ID Card"
+        } else {
+            typeStr = "Document"
+        }
+        
         let issuingCountry = cleanAlpha(String(line1.prefix(5).suffix(3)))
         let namesField = String(line1.suffix(39))
         let (lastName, firstName) = parseNames(namesField)
@@ -139,7 +149,7 @@ public class MRZParser {
         let personalNum = String(line2.suffix(16).prefix(14)).replacingOccurrences(of: "<", with: "")
         
         return ParsedMRZ(
-            documentType: "Passport",
+            documentType: typeStr,
             documentNumber: docNum,
             birthDate: birthDate,
             birthDateString: dobStr,

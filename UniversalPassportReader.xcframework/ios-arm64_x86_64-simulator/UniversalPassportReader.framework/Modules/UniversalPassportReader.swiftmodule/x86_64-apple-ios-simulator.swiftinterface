@@ -54,7 +54,7 @@ import _SwiftConcurrencyShims
 @_Concurrency::MainActor @preconcurrency public struct PassportScannerView : SwiftUICore::View {
   @_Concurrency::MainActor @preconcurrency public var onScanCompleted: (UniversalPassportReader::DocumentData) -> Swift::Void
   @_Concurrency::MainActor @preconcurrency public var onDismiss: () -> Swift::Void
-  @_Concurrency::MainActor @preconcurrency public init(onScanCompleted: @escaping (UniversalPassportReader::DocumentData) -> Swift::Void, onDismiss: @escaping () -> Swift::Void)
+  @_Concurrency::MainActor @preconcurrency public init(authKey: UniversalPassportReader::PassportAuthKey? = nil, onScanCompleted: @escaping (UniversalPassportReader::DocumentData) -> Swift::Void, onDismiss: @escaping () -> Swift::Void)
   @_Concurrency::MainActor @preconcurrency public var body: some SwiftUICore::View {
     get
   }
@@ -96,6 +96,7 @@ public struct PassportCrypto {
   public static func encrypt3DESECB(key: [Swift::UInt8], data: [Swift::UInt8]) -> [Swift::UInt8]?
   public static func deriveBACKeys(docNumber: Swift::String, dob: Swift::String, doe: Swift::String) -> (encKey: [Swift::UInt8], macKey: [Swift::UInt8])
   public static func computeSSC(piccNonce: [Swift::UInt8], ifdNonce: [Swift::UInt8]) -> [Swift::UInt8]
+  public static func hexToBytes(_ hex: Swift::String) -> [Swift::UInt8]?
 }
 public struct DocumentData : Swift::Identifiable {
   public var id: Swift::String {
@@ -148,11 +149,23 @@ public enum PassportReaderError : Swift::Error, Foundation::LocalizedError {
     get
   }
 }
+public enum PassportAuthKey : Swift::Hashable {
+  case mrz(documentNumber: Swift::String, birthDateString: Swift::String, expiryDateString: Swift::String)
+  case customHex(kEncHex: Swift::String, kMacHex: Swift::String)
+  case can(Swift::String)
+  case none
+  public static func == (a: UniversalPassportReader::PassportAuthKey, b: UniversalPassportReader::PassportAuthKey) -> Swift::Bool
+  public func hash(into hasher: inout Swift::Hasher)
+  public var hashValue: Swift::Int {
+    get
+  }
+}
 @objc @_inheritsConvenienceInitializers public class PassportNFCReader : ObjectiveC::NSObject, CoreNFC::NFCTagReaderSessionDelegate {
   public var onProgress: ((Swift::String, Swift::Double) -> Swift::Void)?
   public var onCompletion: ((UniversalPassportReader::DocumentData) -> Swift::Void)?
   public var onError: ((UniversalPassportReader::PassportReaderError) -> Swift::Void)?
   public func startReading(mrz: UniversalPassportReader::ParsedMRZ)
+  public func startReading(mrz: UniversalPassportReader::ParsedMRZ?, authKey: UniversalPassportReader::PassportAuthKey)
   public func tagReaderSessionDidBecomeActive(_ session: CoreNFC::NFCTagReaderSession)
   public func tagReaderSession(_ session: CoreNFC::NFCTagReaderSession, didInvalidateWithError error: any Swift::Error)
   public func tagReaderSession(_ session: CoreNFC::NFCTagReaderSession, didDetect tags: [CoreNFC::NFCTag])

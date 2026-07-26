@@ -28,10 +28,18 @@ public enum PassportReaderError: Error, LocalizedError {
     }
 }
 
+public enum PassportAuthKey: Hashable {
+    case mrz(documentNumber: String, birthDateString: String, expiryDateString: String)
+    case customHex(kEncHex: String, kMacHex: String)
+    case can(String)
+    case none
+}
+
 public class PassportNFCReader: NSObject, NFCTagReaderSessionDelegate {
     
     private var session: NFCTagReaderSession?
     private var mrz: ParsedMRZ?
+    private var authKey: PassportAuthKey = .none
     
     // Session Keys
     private var kSenc: [UInt8] = []
@@ -45,7 +53,17 @@ public class PassportNFCReader: NSObject, NFCTagReaderSessionDelegate {
     public var onError: ((PassportReaderError) -> Void)?
     
     public func startReading(mrz: ParsedMRZ) {
+        let derivedKey = PassportAuthKey.mrz(
+            documentNumber: mrz.documentNumber,
+            birthDateString: mrz.birthDateString,
+            expiryDateString: mrz.expiryDateString
+        )
+        self.startReading(mrz: mrz, authKey: derivedKey)
+    }
+    
+    public func startReading(mrz: ParsedMRZ?, authKey: PassportAuthKey) {
         self.mrz = mrz
+        self.authKey = authKey
         self.isSecureChannelEstablished = false
         self.kSenc = []
         self.kSmac = []
@@ -120,20 +138,54 @@ public class PassportNFCReader: NSObject, NFCTagReaderSessionDelegate {
                 return
             }
             
-            self.updateProgress("Establishing secure channel (BAC)...", progress: 0.3)
-            self.performBAC(tag: tag, session: session)
+            if case .none = self.authKey {
+                self.isSecureChannelEstablished = false
+                self.updateProgress("Reading chip data directly (No BAC)...", progress: 0.4)
+                self.readDataGroups(tag: tag, session: session)
+            } else {
+                self.updateProgress("Establishing secure channel (BAC)...", progress: 0.3)
+                self.performBAC(tag: tag, session: session)
+            }
         }
     }
     
     private func performBAC(tag: NFCISO7816Tag, session: NFCTagReaderSession) {
-        guard let mrz = self.mrz else { return }
+        let kEnc: [UInt8]
+        let kMac: [UInt8]
         
-        // Derive BAC key seed from MRZ data
-        let (kEnc, kMac) = PassportCrypto.deriveBACKeys(
-            docNumber: mrz.documentNumber,
-            dob: mrz.birthDateString,
-            doe: mrz.expiryDateString
-        )
+        switch self.authKey {
+        case .mrz(let docNumber, let birthDateString, let expiryDateString):
+            let (derivedEnc, derivedMac) = PassportCrypto.deriveBACKeys(
+                docNumber: docNumber,
+                dob: birthDateString,
+                doe: expiryDateString
+            )
+            kEnc = derivedEnc
+            kMac = derivedMac
+            
+        case .customHex(let kEncHex, let kMacHex):
+            guard let parsedEnc = PassportCrypto.hexToBytes(kEncHex),
+                  let parsedMac = PassportCrypto.hexToBytes(kMacHex),
+                  parsedEnc.count == 16, parsedMac.count == 16 else {
+                session.invalidate(errorMessage: "Invalid custom 16-byte hex keys.")
+                self.onError?(.mutualAuthenticationFailed)
+                return
+            }
+            kEnc = parsedEnc
+            kMac = parsedMac
+            
+        case .can(let canString):
+            let hash = PassportCrypto.sha1(Array(canString.utf8))
+            let kSeed = Array(hash[0..<16])
+            let hashEnc = PassportCrypto.sha1(kSeed + [0x00, 0x00, 0x00, 0x01])
+            let hashMac = PassportCrypto.sha1(kSeed + [0x00, 0x00, 0x00, 0x02])
+            kEnc = Array(hashEnc[0..<16])
+            kMac = Array(hashMac[0..<16])
+            
+        case .none:
+            kEnc = []
+            kMac = []
+        }
         
         // GET CHALLENGE
         let getChallenge = APDUCommand(cla: 0x00, ins: 0x84, p1: 0x00, p2: 0x00, le: 8)
@@ -328,8 +380,8 @@ public class PassportNFCReader: NSObject, NFCTagReaderSessionDelegate {
             dateOfBirth: finalMRZ.birthDate,
             gender: finalMRZ.gender,
             faceImage: faceImage,
-            isBACAuthenticated: true,
-            isPassiveAuthenticated: true
+            isBACAuthenticated: self.authKey != .none,
+            isPassiveAuthenticated: self.authKey != .none
         )
         
         session.alertMessage = "Read successful!"
@@ -346,7 +398,9 @@ public class PassportNFCReader: NSObject, NFCTagReaderSessionDelegate {
         // 1. SELECT FILE
         let selectCmd = APDUCommand(cla: 0x00, ins: 0xA4, p1: 0x02, p2: 0x0C, data: fileId)
         
-        sendSecureAPDU(tag: tag, command: selectCmd) { [weak self] response, error in
+        let transport = isSecureChannelEstablished ? sendSecureAPDU : sendPlainAPDU
+        
+        transport(tag, selectCmd) { [weak self] response, error in
             guard let self = self else {
                 completion(nil)
                 return
@@ -359,7 +413,7 @@ public class PassportNFCReader: NSObject, NFCTagReaderSessionDelegate {
             // 2. Read first 4 bytes to check length
             let readHeaderCmd = APDUCommand(cla: 0x00, ins: 0xB0, p1: 0x00, p2: 0x00, le: 4)
             
-            self.sendSecureAPDU(tag: tag, command: readHeaderCmd) { response, error in
+            transport(tag, readHeaderCmd) { response, error in
                 guard response.isSuccess, error == nil, response.data.count >= 2 else {
                     completion(nil)
                     return
@@ -373,12 +427,12 @@ public class PassportNFCReader: NSObject, NFCTagReaderSessionDelegate {
                 
                 // 3. Read complete file in chunks
                 var fileBytes = [UInt8]()
-                self.readBinaryChunks(tag: tag, totalSize: totalSize, currentOffset: 0, accumulated: fileBytes, completion: completion)
+                self.readBinaryChunks(tag: tag, totalSize: totalSize, currentOffset: 0, accumulated: fileBytes, useSecure: self.isSecureChannelEstablished, completion: completion)
             }
         }
     }
     
-    private func readBinaryChunks(tag: NFCISO7816Tag, totalSize: Int, currentOffset: Int, accumulated: [UInt8], completion: @escaping ([UInt8]?) -> Void) {
+    private func readBinaryChunks(tag: NFCISO7816Tag, totalSize: Int, currentOffset: Int, accumulated: [UInt8], useSecure: Bool, completion: @escaping ([UInt8]?) -> Void) {
         if currentOffset >= totalSize {
             completion(accumulated)
             return
@@ -392,7 +446,9 @@ public class PassportNFCReader: NSObject, NFCTagReaderSessionDelegate {
         
         let readCmd = APDUCommand(cla: 0x00, ins: 0xB0, p1: p1, p2: p2, le: chunkSize)
         
-        sendSecureAPDU(tag: tag, command: readCmd) { [weak self] response, error in
+        let transport = useSecure ? sendSecureAPDU : sendPlainAPDU
+        
+        transport(tag, readCmd) { [weak self] response, error in
             guard let self = self else {
                 completion(nil)
                 return
@@ -412,7 +468,7 @@ public class PassportNFCReader: NSObject, NFCTagReaderSessionDelegate {
                 self.updateProgress("Downloading photo (\(pct)%)...", progress: 0.7 + (progressVal * 0.2))
             }
             
-            self.readBinaryChunks(tag: tag, totalSize: totalSize, currentOffset: currentOffset + chunkSize, accumulated: newBytes, completion: completion)
+            self.readBinaryChunks(tag: tag, totalSize: totalSize, currentOffset: currentOffset + chunkSize, accumulated: newBytes, useSecure: useSecure, completion: completion)
         }
     }
     

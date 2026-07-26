@@ -18,15 +18,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		n67OXNIQ1stg0VWehSWywOa3Q4s=
+		ikFZTwS5bfwMtEgu6cJvrAyLS7g=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		nC/DHuDMIOXtLorvKeD1j8C0uIs=
+		aCj+4emCjQxB3CThDWielECqcg8=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		zeBsQKWSZPjWICrv6S54LAkAld0=
+		yc9ZAsTX9d9FPNf49PDvxh7AH40=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -34,19 +34,19 @@
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		zeBsQKWSZPjWICrv6S54LAkAld0=
+		yc9ZAsTX9d9FPNf49PDvxh7AH40=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		ydKMjOJ5Ytv/glliisa19guvmr4=
+		SsLbulp7pQTRTI/47yp/zV5Qxus=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		nC/DHuDMIOXtLorvKeD1j8C0uIs=
+		aCj+4emCjQxB3CThDWielECqcg8=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		dXOuTHLcOpMAP1S96+Uhr1pis90=
+		sC3sfoYL5PaPl4NzqoCHsqqBAdI=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -54,11 +54,11 @@
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		dXOuTHLcOpMAP1S96+Uhr1pis90=
+		sC3sfoYL5PaPl4NzqoCHsqqBAdI=
 		</data>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		GjWYcCDq5VdR9HeiQ57cVG3cPR8=
+		zrNcRxVhKQDDrVymO+tRS7S6qls=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -92,14 +92,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			02G5Ndzs3Nu4MipAyullqHJBKnoTkjWp7LMg/pcw27s=
+			CcVpXSPbvGgfeCe/+gUhjyw15+aYxsSptuuoDlHDuxQ=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			o4Wgq9rd7Pi8ANBYXip5FXsDcidJIFGUTCIbAt0eG/Q=
+			t0z8H0Y43bMg8fa6I+AIvTLLr/sW+PmpTzwwti4BSeg=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -113,28 +113,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			o4Wgq9rd7Pi8ANBYXip5FXsDcidJIFGUTCIbAt0eG/Q=
+			t0z8H0Y43bMg8fa6I+AIvTLLr/sW+PmpTzwwti4BSeg=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			m0OdB6V1rihhKGI0nNmJDTMtYp2vgUjUDchCRwbEiiw=
+			xXfWp05JPPAd3lQWRcVSFgaNjeRqu9En5vCuho003qw=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			02G5Ndzs3Nu4MipAyullqHJBKnoTkjWp7LMg/pcw27s=
+			CcVpXSPbvGgfeCe/+gUhjyw15+aYxsSptuuoDlHDuxQ=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			OLjsTr0TvjR/+bIIOlnKsqSAADmvtUfC32+SZ4sM6Jw=
+			WHfa6DQc10ILYIAaN0eZS0Oj8UKJDwy3aZrGpr59HDo=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -148,14 +148,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OLjsTr0TvjR/+bIIOlnKsqSAADmvtUfC32+SZ4sM6Jw=
+			WHfa6DQc10ILYIAaN0eZS0Oj8UKJDwy3aZrGpr59HDo=
 			</data>
 		</dict>
 		<key>Modules/UniversalPassportReader.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			c7taS8tsSjX529TERdTa9f52/VEBAL+dAi0ZkoI0rnA=
+			ETQceeLIU/U5IMqLpesgMclwMRzCLHyHbasGcAxdvZo=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

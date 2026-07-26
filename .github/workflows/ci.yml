@@ -1,0 +1,55 @@
+name: iOS Build and Code Quality CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  lint:
+    name: Lint Code Quality
+    runs-on: macos-15
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Run SwiftLint
+        run: swiftlint lint --reporter github-actions-logging
+
+  build:
+    name: Build Framework and Demo App
+    runs-on: macos-15
+    needs: lint
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 'latest-stable'
+
+      - name: Build UniversalPassportReader Framework
+        run: |
+          xcodebuild -project UniversalPassportReader/UniversalPassportReader.xcodeproj \
+                     -scheme UniversalPassportReader \
+                     -sdk iphonesimulator \
+                     -destination "generic/platform=iOS Simulator" \
+                     clean build
+
+      - name: Build xcframework
+        run: |
+          chmod +x build_xcframework.sh
+          ./build_xcframework.sh
+
+      - name: Build PassportReaderDemo App
+        run: |
+          xcodebuild -project PassportReaderDemo/PassportReaderDemo.xcodeproj \
+                     -scheme PassportReaderDemo \
+                     -sdk iphonesimulator \
+                     -destination "generic/platform=iOS Simulator" \
+                     clean build

@@ -1205,13 +1205,28 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(onScanCompleted:onDismiss:)",
+            "printedName": "init(authKey:onScanCompleted:onDismiss:)",
             "children": [
               {
                 "kind": "TypeNominal",
                 "name": "PassportScannerView",
                 "printedName": "UniversalPassportReader.PassportScannerView",
                 "usr": "s:23UniversalPassportReader0B11ScannerViewV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UniversalPassportReader.PassportAuthKey?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PassportAuthKey",
+                    "printedName": "UniversalPassportReader.PassportAuthKey",
+                    "usr": "s:23UniversalPassportReader0B7AuthKeyO"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeFunc",
@@ -1250,8 +1265,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:23UniversalPassportReader0B11ScannerViewV15onScanCompleted0F7DismissACyAA12DocumentDataVc_yyctcfc",
-            "mangledName": "$s23UniversalPassportReader0B11ScannerViewV15onScanCompleted0F7DismissACyAA12DocumentDataVc_yyctcfc",
+            "usr": "s:23UniversalPassportReader0B11ScannerViewV7authKey15onScanCompleted0H7DismissAcA0b4AuthG0OSg_yAA12DocumentDataVcyyctcfc",
+            "mangledName": "$s23UniversalPassportReader0B11ScannerViewV7authKey15onScanCompleted0H7DismissAcA0b4AuthG0OSg_yAA12DocumentDataVcyyctcfc",
             "moduleName": "UniversalPassportReader",
             "declAttributes": [
               "Preconcurrency",
@@ -2360,6 +2375,50 @@
             "declKind": "Func",
             "usr": "s:23UniversalPassportReader0B6CryptoV10computeSSC9piccNonce03ifdH0Says5UInt8VGAI_AItFZ",
             "mangledName": "$s23UniversalPassportReader0B6CryptoV10computeSSC9piccNonce03ifdH0Says5UInt8VGAI_AItFZ",
+            "moduleName": "UniversalPassportReader",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "hexToBytes",
+            "printedName": "hexToBytes(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.UInt8]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.UInt8]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UInt8",
+                        "printedName": "Swift.UInt8",
+                        "usr": "s:s5UInt8V"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:23UniversalPassportReader0B6CryptoV10hexToBytesySays5UInt8VGSgSSFZ",
+            "mangledName": "$s23UniversalPassportReader0B6CryptoV10hexToBytesySays5UInt8VGSgSSFZ",
             "moduleName": "UniversalPassportReader",
             "static": true,
             "declAttributes": [
@@ -4301,6 +4360,365 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "PassportAuthKey",
+        "printedName": "PassportAuthKey",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "mrz",
+            "printedName": "mrz",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(UniversalPassportReader.PassportAuthKey.Type) -> (Swift.String, Swift.String, Swift.String) -> UniversalPassportReader.PassportAuthKey",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String, Swift.String, Swift.String) -> UniversalPassportReader.PassportAuthKey",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PassportAuthKey",
+                        "printedName": "UniversalPassportReader.PassportAuthKey",
+                        "usr": "s:23UniversalPassportReader0B7AuthKeyO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(documentNumber: Swift.String, birthDateString: Swift.String, expiryDateString: Swift.String)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "UniversalPassportReader.PassportAuthKey.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PassportAuthKey",
+                        "printedName": "UniversalPassportReader.PassportAuthKey",
+                        "usr": "s:23UniversalPassportReader0B7AuthKeyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:23UniversalPassportReader0B7AuthKeyO3mrzyACSS_S2StcACmF",
+            "mangledName": "$s23UniversalPassportReader0B7AuthKeyO3mrzyACSS_S2StcACmF",
+            "moduleName": "UniversalPassportReader"
+          },
+          {
+            "kind": "Var",
+            "name": "customHex",
+            "printedName": "customHex",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(UniversalPassportReader.PassportAuthKey.Type) -> (Swift.String, Swift.String) -> UniversalPassportReader.PassportAuthKey",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String, Swift.String) -> UniversalPassportReader.PassportAuthKey",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PassportAuthKey",
+                        "printedName": "UniversalPassportReader.PassportAuthKey",
+                        "usr": "s:23UniversalPassportReader0B7AuthKeyO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(kEncHex: Swift.String, kMacHex: Swift.String)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "UniversalPassportReader.PassportAuthKey.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PassportAuthKey",
+                        "printedName": "UniversalPassportReader.PassportAuthKey",
+                        "usr": "s:23UniversalPassportReader0B7AuthKeyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:23UniversalPassportReader0B7AuthKeyO9customHexyACSS_SStcACmF",
+            "mangledName": "$s23UniversalPassportReader0B7AuthKeyO9customHexyACSS_SStcACmF",
+            "moduleName": "UniversalPassportReader"
+          },
+          {
+            "kind": "Var",
+            "name": "can",
+            "printedName": "can",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(UniversalPassportReader.PassportAuthKey.Type) -> (Swift.String) -> UniversalPassportReader.PassportAuthKey",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> UniversalPassportReader.PassportAuthKey",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PassportAuthKey",
+                        "printedName": "UniversalPassportReader.PassportAuthKey",
+                        "usr": "s:23UniversalPassportReader0B7AuthKeyO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "UniversalPassportReader.PassportAuthKey.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PassportAuthKey",
+                        "printedName": "UniversalPassportReader.PassportAuthKey",
+                        "usr": "s:23UniversalPassportReader0B7AuthKeyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:23UniversalPassportReader0B7AuthKeyO3canyACSScACmF",
+            "mangledName": "$s23UniversalPassportReader0B7AuthKeyO3canyACSScACmF",
+            "moduleName": "UniversalPassportReader"
+          },
+          {
+            "kind": "Var",
+            "name": "none",
+            "printedName": "none",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(UniversalPassportReader.PassportAuthKey.Type) -> UniversalPassportReader.PassportAuthKey",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PassportAuthKey",
+                    "printedName": "UniversalPassportReader.PassportAuthKey",
+                    "usr": "s:23UniversalPassportReader0B7AuthKeyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "UniversalPassportReader.PassportAuthKey.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PassportAuthKey",
+                        "printedName": "UniversalPassportReader.PassportAuthKey",
+                        "usr": "s:23UniversalPassportReader0B7AuthKeyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:23UniversalPassportReader0B7AuthKeyO4noneyA2CmF",
+            "mangledName": "$s23UniversalPassportReader0B7AuthKeyO4noneyA2CmF",
+            "moduleName": "UniversalPassportReader"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:23UniversalPassportReader0B7AuthKeyO9hashValueSivp",
+            "mangledName": "$s23UniversalPassportReader0B7AuthKeyO9hashValueSivp",
+            "moduleName": "UniversalPassportReader",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:23UniversalPassportReader0B7AuthKeyO9hashValueSivg",
+                "mangledName": "$s23UniversalPassportReader0B7AuthKeyO9hashValueSivg",
+                "moduleName": "UniversalPassportReader",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:23UniversalPassportReader0B7AuthKeyO4hash4intoys6HasherVz_tF",
+            "mangledName": "$s23UniversalPassportReader0B7AuthKeyO4hash4intoys6HasherVz_tF",
+            "moduleName": "UniversalPassportReader",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PassportAuthKey",
+                "printedName": "UniversalPassportReader.PassportAuthKey",
+                "usr": "s:23UniversalPassportReader0B7AuthKeyO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PassportAuthKey",
+                "printedName": "UniversalPassportReader.PassportAuthKey",
+                "usr": "s:23UniversalPassportReader0B7AuthKeyO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:23UniversalPassportReader0B7AuthKeyO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s23UniversalPassportReader0B7AuthKeyO2eeoiySbAC_ACtFZ",
+            "moduleName": "UniversalPassportReader",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:23UniversalPassportReader0B7AuthKeyO",
+        "mangledName": "$s23UniversalPassportReader0B7AuthKeyO",
+        "moduleName": "UniversalPassportReader",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "PassportNFCReader",
         "printedName": "PassportNFCReader",
         "children": [
@@ -4802,6 +5220,46 @@
             "declKind": "Func",
             "usr": "s:23UniversalPassportReader0B9NFCReaderC12startReading3mrzyAA9ParsedMRZV_tF",
             "mangledName": "$s23UniversalPassportReader0B9NFCReaderC12startReading3mrzyAA9ParsedMRZV_tF",
+            "moduleName": "UniversalPassportReader",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "startReading",
+            "printedName": "startReading(mrz:authKey:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UniversalPassportReader.ParsedMRZ?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ParsedMRZ",
+                    "printedName": "UniversalPassportReader.ParsedMRZ",
+                    "usr": "s:23UniversalPassportReader9ParsedMRZV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PassportAuthKey",
+                "printedName": "UniversalPassportReader.PassportAuthKey",
+                "usr": "s:23UniversalPassportReader0B7AuthKeyO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:23UniversalPassportReader0B9NFCReaderC12startReading3mrz7authKeyyAA9ParsedMRZVSg_AA0b4AuthI0OtF",
+            "mangledName": "$s23UniversalPassportReader0B9NFCReaderC12startReading3mrz7authKeyyAA9ParsedMRZVSg_AA0b4AuthI0OtF",
             "moduleName": "UniversalPassportReader",
             "declAttributes": [
               "AccessControl"
@@ -7615,133 +8073,133 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/ScanningHUDView.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/ScanningHUDView.swift",
       "kind": "BooleanLiteral",
       "offset": 241,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/ScanningHUDView.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/ScanningHUDView.swift",
       "kind": "FloatLiteral",
       "offset": 278,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/ScanningHUDView.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/ScanningHUDView.swift",
       "kind": "StringLiteral",
       "offset": 311,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/PassportScannerView.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/PassportScannerView.swift",
       "kind": "StringLiteral",
       "offset": 220,
       "length": 47,
       "value": "\"Align document's MRZ strip inside target area\""
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/PassportScannerView.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/PassportScannerView.swift",
       "kind": "BooleanLiteral",
       "offset": 305,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/PassportScannerView.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/PassportScannerView.swift",
       "kind": "FloatLiteral",
       "offset": 356,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/PassportScannerView.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/PassportScannerView.swift",
       "kind": "StringLiteral",
       "offset": 395,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/ResultPresentationView.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/ResultPresentationView.swift",
       "kind": "BooleanLiteral",
       "offset": 9939,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/ShimmerEffect.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/UI\/ShimmerEffect.swift",
       "kind": "IntegerLiteral",
       "offset": 100,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/Models\/DocumentData.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/Models\/DocumentData.swift",
       "kind": "BooleanLiteral",
       "offset": 1022,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/Models\/DocumentData.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/Models\/DocumentData.swift",
       "kind": "BooleanLiteral",
       "offset": 1068,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/NFC\/PassportNFCReader.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/NFC\/PassportNFCReader.swift",
       "kind": "Array",
-      "offset": 1409,
+      "offset": 1677,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/NFC\/PassportNFCReader.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/NFC\/PassportNFCReader.swift",
       "kind": "Array",
-      "offset": 1445,
+      "offset": 1713,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/NFC\/PassportNFCReader.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/NFC\/PassportNFCReader.swift",
       "kind": "Array",
-      "offset": 1479,
+      "offset": 1747,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/NFC\/PassportNFCReader.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/NFC\/PassportNFCReader.swift",
       "kind": "BooleanLiteral",
-      "offset": 1527,
+      "offset": 1795,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/NFC\/APDU.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/NFC\/APDU.swift",
       "kind": "Array",
       "offset": 285,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/MRZ\/MRZScanner.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/MRZ\/MRZScanner.swift",
       "kind": "BooleanLiteral",
       "offset": 213,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/MRZ\/MRZScanner.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/MRZ\/MRZScanner.swift",
       "kind": "StringLiteral",
       "offset": 416,
       "length": 42,
       "value": "\"com.universalpassportreader.sessionqueue\""
     },
     {
-      "filePath": "\/Users\/aayushkumar\/Desktop\/frame\/UniversalPassportReader\/Sources\/UniversalPassportReader\/MRZ\/MRZScanner.swift",
+      "filePath": "\/Users\/aayushkumar\/Desktop\/NFC_Reader_iOS\/UniversalPassportReader\/Sources\/UniversalPassportReader\/MRZ\/MRZScanner.swift",
       "kind": "BooleanLiteral",
       "offset": 665,
       "length": 5,
