@@ -49,3 +49,10 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:${{ matrix.language }}"
+          upload: false
+
+      - name: Upload SARIF Security Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-report-${{ matrix.language }}
+          path: ../results/*.sarif
