@@ -33,13 +33,19 @@ jobs:
         with:
           xcode-version: 'latest-stable'
 
-      - name: Build UniversalPassportReader Framework
+      - name: Install xcodegen
+        run: brew install xcodegen
+
+      - name: Generate UniversalPassportReader Project
+        run: xcodegen --spec UniversalPassportReader/project.yml --project UniversalPassportReader/
+
+      - name: Run Framework Unit Tests
         run: |
           xcodebuild -project UniversalPassportReader/UniversalPassportReader.xcodeproj \
                      -scheme UniversalPassportReader \
                      -sdk iphonesimulator \
                      -destination "generic/platform=iOS Simulator" \
-                     clean build
+                     test
 
       - name: Build xcframework
         run: |

@@ -36,4 +36,30 @@ final class CryptoTests: XCTestCase {
         XCTAssertEqual(kEnc.count, 16)
         XCTAssertEqual(kMac.count, 16)
     }
+    
+    func testHexToBytes() {
+        let validHex = "00112233AABBCC"
+        let bytes = PassportCrypto.hexToBytes(validHex)
+        XCTAssertNotNil(bytes)
+        XCTAssertEqual(bytes?.count, 7)
+        XCTAssertEqual(bytes?[0], 0x00)
+        XCTAssertEqual(bytes?[4], 0xAA)
+        
+        let invalidHex = "0011223" // Odd length
+        XCTAssertNil(PassportCrypto.hexToBytes(invalidHex))
+    }
+    
+    func testCANKeyDerivation() {
+        let can = "123456"
+        let hash = PassportCrypto.sha1(Array(can.utf8))
+        let kSeed = Array(hash[0..<16])
+        let hashEnc = PassportCrypto.sha1(kSeed + [0x00, 0x00, 0x00, 0x01])
+        let hashMac = PassportCrypto.sha1(kSeed + [0x00, 0x00, 0x00, 0x02])
+        let kEnc = Array(hashEnc[0..<16])
+        let kMac = Array(hashMac[0..<16])
+        
+        XCTAssertEqual(kEnc.count, 16)
+        XCTAssertEqual(kMac.count, 16)
+        XCTAssertNotEqual(kEnc, kMac)
+    }
 }

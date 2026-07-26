@@ -1,0 +1,38 @@
+name: UniversalPassportReader
+options:
+  bundleIdPrefix: com.universalpassportreader
+targets:
+  UniversalPassportReader:
+    type: framework
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: Sources/UniversalPassportReader
+    settings:
+      CLANG_ENABLE_MODULES: YES
+      SWIFT_VERSION: "5.0"
+      BUILD_LIBRARY_FOR_DISTRIBUTION: YES
+      GENERATE_INFOPLIST_FILE: YES
+      
+  UniversalPassportReaderTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: Tests/UniversalPassportReaderTests
+    dependencies:
+      - target: UniversalPassportReader
+    settings:
+      SWIFT_VERSION: "5.0"
+      GENERATE_INFOPLIST_FILE: YES
+
+schemes:
+  UniversalPassportReader:
+    build:
+      targets:
+        UniversalPassportReader: [all]
+        UniversalPassportReaderTests: [all]
+    test:
+      targets:
+        - UniversalPassportReaderTests
+

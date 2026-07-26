@@ -3,227 +3,336 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile */
-		940814D9FC3C3E1B6925457C /* UniversalPassportReaderCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2300348EDCD16390A9B6D628 /* UniversalPassportReaderCore.cpp */; };
-		6216779C5AC8149A097F22C0 /* ScanningHUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68D92A1300B3C965BF9518E /* ScanningHUDView.swift */; };
-		A392CA958AE84CA03142993C /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3652BFDDF3DADAC6E6254 /* CameraPreview.swift */; };
-		4B42621AFE8ABCF888CB9FF1 /* PassportScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDEC0C08D4328B07AE0703F /* PassportScannerView.swift */; };
-		B215062834FAA76C28B89EFC /* ResultPresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B600262DF52B77E780BD22AE /* ResultPresentationView.swift */; };
-		C8311B93EAD428E83773541D /* ShimmerEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C263A58E5D22B6A6A4EE26 /* ShimmerEffect.swift */; };
-		C500FCA170E0FCFAC43782D5 /* PassportCrypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9311683033A6F5A2A9AF86 /* PassportCrypto.cpp */; };
-		5552D67D1F604588CCA2AD98 /* PassportCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A50992E5C3BF998603F97 /* PassportCrypto.swift */; };
-		886659CB6405322C5DAAE555 /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA53F1C6777AC06DAB6EED1 /* DocumentData.swift */; };
-		07AC1E96D4DB4B47815328E5 /* ASN1Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2838F260C399FDC05E301 /* ASN1Parser.cpp */; };
-		D2EB4E137B1E5D1B53B6192E /* ASN1Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D49435CC326D6D7D226ACA /* ASN1Parser.swift */; };
-		2CF9A4D0F41D89BB44C6F405 /* PassportNFCReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D1A67C8404477D125531C /* PassportNFCReader.swift */; };
-		546D4C6C1DCD7E30D4BACF65 /* APDU.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0988A8CDA98B35F52BF61 /* APDU.swift */; };
-		FA0DC9ADA10B5BBA1DD6942F /* MRZScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85828FF7DB4A52CCD62DECCA /* MRZScanner.swift */; };
-		871E758B5125884384C8FC70 /* MRZParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EC103456AA96249A9D2C8A /* MRZParser.swift */; };
-		12C7FA8D4D7A470062AD0574 /* UniversalPassportReaderCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 36CA0DC48A30785C28809AD1 /* UniversalPassportReaderCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EFE6C7F837D391F95201B290 /* UniversalPassportReader.h in Headers */ = {isa = PBXBuildFile; fileRef = D98B761D1FE0CBB833FAEDE7 /* UniversalPassportReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5BCB04F86AC1909AFA76191D /* PassportCrypto.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DACFED5753964F745DA43649 /* PassportCrypto.hpp */; };
-		4966CF3E89ADC98B8687D7BD /* ASN1Parser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 008B64C330CAF4F62622FFE1 /* ASN1Parser.hpp */; };
-/* End PBXBuildFile */
+/* Begin PBXBuildFile section */
+		10A3DD08C95E4498E9CA2268 /* PassportCrypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D2CBFBB4C46FEB4456773A4 /* PassportCrypto.cpp */; };
+		1BE6226635CDA1065558DD3B /* UniversalPassportReaderCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D7E60B9AE62BA8161E53855 /* UniversalPassportReaderCore.cpp */; };
+		31D289651890CE951B6A408B /* BenchmarkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1591356B80634B01FE53CE4 /* BenchmarkingTests.swift */; };
+		36E2BD48EC51E4F498F27021 /* ResultPresentationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D5BC284F51F319FB973ED4 /* ResultPresentationView.swift */; };
+		381A68BCDB3B2C16D13B43F8 /* ASN1Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F04484FC5572F9695A87012C /* ASN1Parser.cpp */; };
+		3CA6A44024AEFC36657983EC /* UniversalPassportReaderCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E5B1A279081B8458BB4B388 /* UniversalPassportReaderCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		408E745FC195BC44FE87AD34 /* MRZParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16963935538000A50CE5794F /* MRZParser.swift */; };
+		44C2928F56E107107E13E852 /* PassportScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40EA350D388B907B5359BB0 /* PassportScannerView.swift */; };
+		4EF30171363DF39B22190148 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5175F40E190BFB1BB23CC /* CameraPreview.swift */; };
+		5A8D671A0FAACC064E19EEE8 /* ShimmerEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FD7DEA2C6CED48A27B7AF1 /* ShimmerEffect.swift */; };
+		66B4A8116D9994D8325377F1 /* CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC118F28E91568BA47CC8B9A /* CryptoTests.swift */; };
+		6A92B8DE249F073DC69F6CC1 /* ASN1Parser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BA399F6B7C8D989C783CF384 /* ASN1Parser.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		7415F259B7DF8A15026B7CBA /* ScanningHUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0293A726E43B2C4D2BF5711F /* ScanningHUDView.swift */; };
+		7947D8043D0B5F1750CDF9BA /* UniversalPassportReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9AF149197DC88CE804BB85 /* UniversalPassportReader.framework */; };
+		7AEE0D5758F8F7AA62CDB3C7 /* UniversalPassportReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F06DA34197A5F1DC7F4013C /* UniversalPassportReaderTests.swift */; };
+		9FAF7AEDBCE219F337682B56 /* PassportNFCReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E786F245367F2A82097A1DD /* PassportNFCReader.swift */; };
+		B3E1B6F978D1764F74DC8034 /* PassportCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8BA04A0BA0A17F93F9467 /* PassportCrypto.swift */; };
+		D2B378FBE5DD9ED7FD5A074D /* UniversalPassportReader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9AF149197DC88CE804BB85 /* UniversalPassportReader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD342EB840C7B84D80ECD429 /* ASN1Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ED541453AF51A559FBA9C /* ASN1Parser.swift */; };
+		DE01600777C0402E60730530 /* DocumentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D89F161D05DE086925AAD0F /* DocumentData.swift */; };
+		E51B014E214AB9EB65EB2160 /* MRZParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602DFDF99E8F6B1D14A62292 /* MRZParserTests.swift */; };
+		E77ABD932E930DECA12549A7 /* PassportCrypto.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7704216BD3CE7D63C28EC467 /* PassportCrypto.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		F3C39CF41DCA4A963B374FDB /* UniversalPassportReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 41DA85435C5E5718627598F2 /* UniversalPassportReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F5B7BCE101546D7B668D40CF /* APDU.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12665B0515B3F792A089018 /* APDU.swift */; };
+		FE586414AEA7408257870AA5 /* MRZScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E33DA33D89EBA7325764334 /* MRZScanner.swift */; };
+/* End PBXBuildFile section */
 
-/* Begin PBXFileReference */
-		7C6DC20891F1283914E619B6 /* UniversalPassportReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UniversalPassportReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2300348EDCD16390A9B6D628 /* UniversalPassportReaderCore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UniversalPassportReaderCore.cpp; sourceTree = "<group>"; };
-		C68D92A1300B3C965BF9518E /* ScanningHUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI/ScanningHUDView.swift; sourceTree = "<group>"; };
-		4DE3652BFDDF3DADAC6E6254 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI/CameraPreview.swift; sourceTree = "<group>"; };
-		DBDEC0C08D4328B07AE0703F /* PassportScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI/PassportScannerView.swift; sourceTree = "<group>"; };
-		B600262DF52B77E780BD22AE /* ResultPresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI/ResultPresentationView.swift; sourceTree = "<group>"; };
-		D3C263A58E5D22B6A6A4EE26 /* ShimmerEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI/ShimmerEffect.swift; sourceTree = "<group>"; };
-		7A9311683033A6F5A2A9AF86 /* PassportCrypto.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Crypto/PassportCrypto.cpp; sourceTree = "<group>"; };
-		207A50992E5C3BF998603F97 /* PassportCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto/PassportCrypto.swift; sourceTree = "<group>"; };
-		CDA53F1C6777AC06DAB6EED1 /* DocumentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/DocumentData.swift; sourceTree = "<group>"; };
-		1FA2838F260C399FDC05E301 /* ASN1Parser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NFC/ASN1Parser.cpp; sourceTree = "<group>"; };
-		A4D49435CC326D6D7D226ACA /* ASN1Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFC/ASN1Parser.swift; sourceTree = "<group>"; };
-		506D1A67C8404477D125531C /* PassportNFCReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFC/PassportNFCReader.swift; sourceTree = "<group>"; };
-		B4B0988A8CDA98B35F52BF61 /* APDU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFC/APDU.swift; sourceTree = "<group>"; };
-		85828FF7DB4A52CCD62DECCA /* MRZScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRZ/MRZScanner.swift; sourceTree = "<group>"; };
-		F0EC103456AA96249A9D2C8A /* MRZParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRZ/MRZParser.swift; sourceTree = "<group>"; };
-		36CA0DC48A30785C28809AD1 /* UniversalPassportReaderCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniversalPassportReaderCore.h; sourceTree = "<group>"; };
-		D98B761D1FE0CBB833FAEDE7 /* UniversalPassportReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniversalPassportReader.h; sourceTree = "<group>"; };
-		DACFED5753964F745DA43649 /* PassportCrypto.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Crypto/PassportCrypto.hpp; sourceTree = "<group>"; };
-		008B64C330CAF4F62622FFE1 /* ASN1Parser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NFC/ASN1Parser.hpp; sourceTree = "<group>"; };
-/* End PBXFileReference */
+/* Begin PBXContainerItemProxy section */
+		74D4CC630F52F8EAE2861AC4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 536C5F5D990CDE19B2843B62 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F526B4337106B59D84656F73;
+			remoteInfo = UniversalPassportReader;
+		};
+/* End PBXContainerItemProxy section */
 
-/* Begin PBXFrameworksBuildPhase */
-		450488E560E7C665DAA25A7E /* Frameworks */ = {
+/* Begin PBXCopyFilesBuildPhase section */
+		051CF11451CFF415BF29DBD6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D2B378FBE5DD9ED7FD5A074D /* UniversalPassportReader.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0293A726E43B2C4D2BF5711F /* ScanningHUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningHUDView.swift; sourceTree = "<group>"; };
+		0F9AF149197DC88CE804BB85 /* UniversalPassportReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UniversalPassportReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		16963935538000A50CE5794F /* MRZParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRZParser.swift; sourceTree = "<group>"; };
+		20FD7DEA2C6CED48A27B7AF1 /* ShimmerEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffect.swift; sourceTree = "<group>"; };
+		23F8BA04A0BA0A17F93F9467 /* PassportCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportCrypto.swift; sourceTree = "<group>"; };
+		267ED541453AF51A559FBA9C /* ASN1Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASN1Parser.swift; sourceTree = "<group>"; };
+		29D5BC284F51F319FB973ED4 /* ResultPresentationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPresentationView.swift; sourceTree = "<group>"; };
+		2E786F245367F2A82097A1DD /* PassportNFCReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportNFCReader.swift; sourceTree = "<group>"; };
+		41DA85435C5E5718627598F2 /* UniversalPassportReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniversalPassportReader.h; sourceTree = "<group>"; };
+		59E61648DF6BC3C9AF0E758B /* UniversalPassportReaderTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = UniversalPassportReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D7E60B9AE62BA8161E53855 /* UniversalPassportReaderCore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UniversalPassportReaderCore.cpp; sourceTree = "<group>"; };
+		602DFDF99E8F6B1D14A62292 /* MRZParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRZParserTests.swift; sourceTree = "<group>"; };
+		6D89F161D05DE086925AAD0F /* DocumentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentData.swift; sourceTree = "<group>"; };
+		6E33DA33D89EBA7325764334 /* MRZScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRZScanner.swift; sourceTree = "<group>"; };
+		7704216BD3CE7D63C28EC467 /* PassportCrypto.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PassportCrypto.hpp; sourceTree = "<group>"; };
+		7F06DA34197A5F1DC7F4013C /* UniversalPassportReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalPassportReaderTests.swift; sourceTree = "<group>"; };
+		8E5B1A279081B8458BB4B388 /* UniversalPassportReaderCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UniversalPassportReaderCore.h; sourceTree = "<group>"; };
+		9D2CBFBB4C46FEB4456773A4 /* PassportCrypto.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PassportCrypto.cpp; sourceTree = "<group>"; };
+		A12665B0515B3F792A089018 /* APDU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APDU.swift; sourceTree = "<group>"; };
+		B5A5175F40E190BFB1BB23CC /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		BA399F6B7C8D989C783CF384 /* ASN1Parser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ASN1Parser.hpp; sourceTree = "<group>"; };
+		D1591356B80634B01FE53CE4 /* BenchmarkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkingTests.swift; sourceTree = "<group>"; };
+		DC118F28E91568BA47CC8B9A /* CryptoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
+		E40EA350D388B907B5359BB0 /* PassportScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportScannerView.swift; sourceTree = "<group>"; };
+		F04484FC5572F9695A87012C /* ASN1Parser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ASN1Parser.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73EF5C65A1875FA05EC40855 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7947D8043D0B5F1750CDF9BA /* UniversalPassportReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXFrameworksBuildPhase */
+/* End PBXFrameworksBuildPhase section */
 
-/* Begin PBXGroup */
-		8A60902D9C3F7B620388FC06 = {
+/* Begin PBXGroup section */
+		0697311B130A6DA96C2E3897 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD70869963382D16D3379E8D /* Sources */,
-				8331220311F85C4F7009D434 /* Frameworks */,
-				5D4CF224EA2A452398D2B27A /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		AD70869963382D16D3379E8D /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				2300348EDCD16390A9B6D628 /* UniversalPassportReaderCore.cpp */,
-				C68D92A1300B3C965BF9518E /* ScanningHUDView.swift */,
-				4DE3652BFDDF3DADAC6E6254 /* CameraPreview.swift */,
-				DBDEC0C08D4328B07AE0703F /* PassportScannerView.swift */,
-				B600262DF52B77E780BD22AE /* ResultPresentationView.swift */,
-				D3C263A58E5D22B6A6A4EE26 /* ShimmerEffect.swift */,
-				7A9311683033A6F5A2A9AF86 /* PassportCrypto.cpp */,
-				207A50992E5C3BF998603F97 /* PassportCrypto.swift */,
-				CDA53F1C6777AC06DAB6EED1 /* DocumentData.swift */,
-				1FA2838F260C399FDC05E301 /* ASN1Parser.cpp */,
-				A4D49435CC326D6D7D226ACA /* ASN1Parser.swift */,
-				506D1A67C8404477D125531C /* PassportNFCReader.swift */,
-				B4B0988A8CDA98B35F52BF61 /* APDU.swift */,
-				85828FF7DB4A52CCD62DECCA /* MRZScanner.swift */,
-				F0EC103456AA96249A9D2C8A /* MRZParser.swift */,
-				36CA0DC48A30785C28809AD1 /* UniversalPassportReaderCore.h */,
-				D98B761D1FE0CBB833FAEDE7 /* UniversalPassportReader.h */,
-				DACFED5753964F745DA43649 /* PassportCrypto.hpp */,
-				008B64C330CAF4F62622FFE1 /* ASN1Parser.hpp */,
-			);
-			name = Sources;
-			path = Sources/UniversalPassportReader;
-			sourceTree = "<group>";
-		};
-		8331220311F85C4F7009D434 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5D4CF224EA2A452398D2B27A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7C6DC20891F1283914E619B6 /* UniversalPassportReader.framework */,
+				0F9AF149197DC88CE804BB85 /* UniversalPassportReader.framework */,
+				59E61648DF6BC3C9AF0E758B /* UniversalPassportReaderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-/* End PBXGroup */
+		075A8EC1180FD613E3016D07 /* UniversalPassportReader */ = {
+			isa = PBXGroup;
+			children = (
+				41DA85435C5E5718627598F2 /* UniversalPassportReader.h */,
+				5D7E60B9AE62BA8161E53855 /* UniversalPassportReaderCore.cpp */,
+				8E5B1A279081B8458BB4B388 /* UniversalPassportReaderCore.h */,
+				8740EA28673B5B546AB3B22A /* Crypto */,
+				7973E2903DC0A60E5F565DEA /* Models */,
+				95A6EC2B8B71E58F480630E7 /* MRZ */,
+				81C25A74EAF16124627347DA /* NFC */,
+				516782615B9D718C357E0756 /* UI */,
+			);
+			name = UniversalPassportReader;
+			path = Sources/UniversalPassportReader;
+			sourceTree = "<group>";
+		};
+		43764460DB169491B18FEB94 /* UniversalPassportReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				D1591356B80634B01FE53CE4 /* BenchmarkingTests.swift */,
+				DC118F28E91568BA47CC8B9A /* CryptoTests.swift */,
+				602DFDF99E8F6B1D14A62292 /* MRZParserTests.swift */,
+				7F06DA34197A5F1DC7F4013C /* UniversalPassportReaderTests.swift */,
+			);
+			name = UniversalPassportReaderTests;
+			path = Tests/UniversalPassportReaderTests;
+			sourceTree = "<group>";
+		};
+		516782615B9D718C357E0756 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B5A5175F40E190BFB1BB23CC /* CameraPreview.swift */,
+				E40EA350D388B907B5359BB0 /* PassportScannerView.swift */,
+				29D5BC284F51F319FB973ED4 /* ResultPresentationView.swift */,
+				0293A726E43B2C4D2BF5711F /* ScanningHUDView.swift */,
+				20FD7DEA2C6CED48A27B7AF1 /* ShimmerEffect.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		5F7DB531CE34DA999EC8547B = {
+			isa = PBXGroup;
+			children = (
+				075A8EC1180FD613E3016D07 /* UniversalPassportReader */,
+				43764460DB169491B18FEB94 /* UniversalPassportReaderTests */,
+				0697311B130A6DA96C2E3897 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7973E2903DC0A60E5F565DEA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6D89F161D05DE086925AAD0F /* DocumentData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		81C25A74EAF16124627347DA /* NFC */ = {
+			isa = PBXGroup;
+			children = (
+				A12665B0515B3F792A089018 /* APDU.swift */,
+				F04484FC5572F9695A87012C /* ASN1Parser.cpp */,
+				BA399F6B7C8D989C783CF384 /* ASN1Parser.hpp */,
+				267ED541453AF51A559FBA9C /* ASN1Parser.swift */,
+				2E786F245367F2A82097A1DD /* PassportNFCReader.swift */,
+			);
+			path = NFC;
+			sourceTree = "<group>";
+		};
+		8740EA28673B5B546AB3B22A /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				9D2CBFBB4C46FEB4456773A4 /* PassportCrypto.cpp */,
+				7704216BD3CE7D63C28EC467 /* PassportCrypto.hpp */,
+				23F8BA04A0BA0A17F93F9467 /* PassportCrypto.swift */,
+			);
+			path = Crypto;
+			sourceTree = "<group>";
+		};
+		95A6EC2B8B71E58F480630E7 /* MRZ */ = {
+			isa = PBXGroup;
+			children = (
+				16963935538000A50CE5794F /* MRZParser.swift */,
+				6E33DA33D89EBA7325764334 /* MRZScanner.swift */,
+			);
+			path = MRZ;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase */
-		D955FB95B302AB3644EDD3C0 /* Headers */ = {
+/* Begin PBXHeadersBuildPhase section */
+		8C5978572ED1423C15132F64 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12C7FA8D4D7A470062AD0574 /* UniversalPassportReaderCore.h in Headers */,
-				EFE6C7F837D391F95201B290 /* UniversalPassportReader.h in Headers */,
-				5BCB04F86AC1909AFA76191D /* PassportCrypto.hpp in Headers */,
-				4966CF3E89ADC98B8687D7BD /* ASN1Parser.hpp in Headers */,
+				6A92B8DE249F073DC69F6CC1 /* ASN1Parser.hpp in Headers */,
+				E77ABD932E930DECA12549A7 /* PassportCrypto.hpp in Headers */,
+				F3C39CF41DCA4A963B374FDB /* UniversalPassportReader.h in Headers */,
+				3CA6A44024AEFC36657983EC /* UniversalPassportReaderCore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXHeadersBuildPhase */
+/* End PBXHeadersBuildPhase section */
 
-/* Begin PBXNativeTarget */
-		C163E63E7AEE934C566C4275 /* UniversalPassportReader */ = {
+/* Begin PBXNativeTarget section */
+		0A8D416FD151A83A8D029CC8 /* UniversalPassportReaderTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1577F18E8AD11AC7DB255B21 /* Build configuration list for PBXNativeTarget "UniversalPassportReader" */;
+			buildConfigurationList = A0166A94DB9DFE2A1353492E /* Build configuration list for PBXNativeTarget "UniversalPassportReaderTests" */;
 			buildPhases = (
-				C4AB4D0738C82081906A9F77 /* Sources */,
-				450488E560E7C665DAA25A7E /* Frameworks */,
-				D955FB95B302AB3644EDD3C0 /* Headers */,
-				D36D5C9C5FFD26058D2661D3 /* Resources */,
+				C025CD21C2CB870187EE8C02 /* Sources */,
+				73EF5C65A1875FA05EC40855 /* Frameworks */,
+				051CF11451CFF415BF29DBD6 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E346968CBF9CAF29808CC4D /* PBXTargetDependency */,
+			);
+			name = UniversalPassportReaderTests;
+			packageProductDependencies = (
+			);
+			productName = UniversalPassportReaderTests;
+			productReference = 59E61648DF6BC3C9AF0E758B /* UniversalPassportReaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F526B4337106B59D84656F73 /* UniversalPassportReader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4891C748EDE3D5626D74A7E8 /* Build configuration list for PBXNativeTarget "UniversalPassportReader" */;
+			buildPhases = (
+				8C5978572ED1423C15132F64 /* Headers */,
+				ECD5DC10FBBFFA4CDC9ACE0F /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = UniversalPassportReader;
+			packageProductDependencies = (
+			);
 			productName = UniversalPassportReader;
-			productReference = 7C6DC20891F1283914E619B6 /* UniversalPassportReader.framework */;
+			productReference = 0F9AF149197DC88CE804BB85 /* UniversalPassportReader.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-/* End PBXNativeTarget */
+/* End PBXNativeTarget section */
 
-/* Begin PBXProject */
-		7B220AE141FA1BD92AAAC569 /* Project object */ = {
+/* Begin PBXProject section */
+		536C5F5D990CDE19B2843B62 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					C163E63E7AEE934C566C4275 = {
-						CreatedOnToolsVersion = 15.0;
-					};
 				};
 			};
-			buildConfigurationList = 2C13906AD0908B0A38BC46C1 /* Build configuration list for PBXProject "UniversalPassportReader" */;
-			compatibilityVersion = "Xcode 14.0";
+			buildConfigurationList = 552323665F2A4ADE0BE81B39 /* Build configuration list for PBXProject "UniversalPassportReader" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
-			mainGroup = 8A60902D9C3F7B620388FC06;
-			productRefGroup = 5D4CF224EA2A452398D2B27A /* Products */;
+			mainGroup = 5F7DB531CE34DA999EC8547B;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 0697311B130A6DA96C2E3897 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C163E63E7AEE934C566C4275 /* UniversalPassportReader */,
+				F526B4337106B59D84656F73 /* UniversalPassportReader */,
+				0A8D416FD151A83A8D029CC8 /* UniversalPassportReaderTests */,
 			);
 		};
-/* End PBXProject */
+/* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase */
-		D36D5C9C5FFD26058D2661D3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase */
-
-/* Begin PBXSourcesBuildPhase */
-		C4AB4D0738C82081906A9F77 /* Sources */ = {
+/* Begin PBXSourcesBuildPhase section */
+		C025CD21C2CB870187EE8C02 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				940814D9FC3C3E1B6925457C /* UniversalPassportReaderCore.cpp in Sources */,
-				6216779C5AC8149A097F22C0 /* ScanningHUDView.swift in Sources */,
-				A392CA958AE84CA03142993C /* CameraPreview.swift in Sources */,
-				4B42621AFE8ABCF888CB9FF1 /* PassportScannerView.swift in Sources */,
-				B215062834FAA76C28B89EFC /* ResultPresentationView.swift in Sources */,
-				C8311B93EAD428E83773541D /* ShimmerEffect.swift in Sources */,
-				C500FCA170E0FCFAC43782D5 /* PassportCrypto.cpp in Sources */,
-				5552D67D1F604588CCA2AD98 /* PassportCrypto.swift in Sources */,
-				886659CB6405322C5DAAE555 /* DocumentData.swift in Sources */,
-				07AC1E96D4DB4B47815328E5 /* ASN1Parser.cpp in Sources */,
-				D2EB4E137B1E5D1B53B6192E /* ASN1Parser.swift in Sources */,
-				2CF9A4D0F41D89BB44C6F405 /* PassportNFCReader.swift in Sources */,
-				546D4C6C1DCD7E30D4BACF65 /* APDU.swift in Sources */,
-				FA0DC9ADA10B5BBA1DD6942F /* MRZScanner.swift in Sources */,
-				871E758B5125884384C8FC70 /* MRZParser.swift in Sources */,
+				31D289651890CE951B6A408B /* BenchmarkingTests.swift in Sources */,
+				66B4A8116D9994D8325377F1 /* CryptoTests.swift in Sources */,
+				E51B014E214AB9EB65EB2160 /* MRZParserTests.swift in Sources */,
+				7AEE0D5758F8F7AA62CDB3C7 /* UniversalPassportReaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXSourcesBuildPhase */
+		ECD5DC10FBBFFA4CDC9ACE0F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5B7BCE101546D7B668D40CF /* APDU.swift in Sources */,
+				381A68BCDB3B2C16D13B43F8 /* ASN1Parser.cpp in Sources */,
+				DD342EB840C7B84D80ECD429 /* ASN1Parser.swift in Sources */,
+				4EF30171363DF39B22190148 /* CameraPreview.swift in Sources */,
+				DE01600777C0402E60730530 /* DocumentData.swift in Sources */,
+				408E745FC195BC44FE87AD34 /* MRZParser.swift in Sources */,
+				FE586414AEA7408257870AA5 /* MRZScanner.swift in Sources */,
+				10A3DD08C95E4498E9CA2268 /* PassportCrypto.cpp in Sources */,
+				B3E1B6F978D1764F74DC8034 /* PassportCrypto.swift in Sources */,
+				9FAF7AEDBCE219F337682B56 /* PassportNFCReader.swift in Sources */,
+				44C2928F56E107107E13E852 /* PassportScannerView.swift in Sources */,
+				36E2BD48EC51E4F498F27021 /* ResultPresentationView.swift in Sources */,
+				7415F259B7DF8A15026B7CBA /* ScanningHUDView.swift in Sources */,
+				5A8D671A0FAACC064E19EEE8 /* ShimmerEffect.swift in Sources */,
+				1BE6226635CDA1065558DD3B /* UniversalPassportReaderCore.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
 
-/* Begin XCBuildConfiguration */
-		944304B35B69A44743E2C693 /* Debug */ = {
+/* Begin PBXTargetDependency section */
+		1E346968CBF9CAF29808CC4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F526B4337106B59D84656F73 /* UniversalPassportReader */;
+			targetProxy = 74D4CC630F52F8EAE2861AC4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		23B5A317FDFE93DFD7F98446 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -233,7 +342,152 @@
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_PREP_CALL = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		84CD02EB1653BA9397C47629 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.universalpassportreader.UniversalPassportReaderTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8EB7344CA00CF93E43A9B97C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.universalpassportreader.UniversalPassportReader;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		9BB45A6461BA3CD1B4D8A756 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.universalpassportreader.UniversalPassportReader;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		CF1D815583C33A7246CB964C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.universalpassportreader.UniversalPassportReaderTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CF94824C4C4B229108A93502 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -259,8 +513,8 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
+					"DEBUG=1",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -268,129 +522,48 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		64BC1C4F2D476EEDCECC77F7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_PREP_CALL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		FC84591C8632C7A87B475679 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				SKIP_INSTALL = NO;
-				DEFINES_MODULE = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.universalpassportreader.UniversalPassportReader;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		F4B0E478CF4F3AE7BE55FA44 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				SKIP_INSTALL = NO;
-				DEFINES_MODULE = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.universalpassportreader.UniversalPassportReader;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration */
+/* End XCBuildConfiguration section */
 
-/* Begin XCConfigurationList */
-		2C13906AD0908B0A38BC46C1 /* Build configuration list for PBXProject "UniversalPassportReader" */ = {
+/* Begin XCConfigurationList section */
+		4891C748EDE3D5626D74A7E8 /* Build configuration list for PBXNativeTarget "UniversalPassportReader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				944304B35B69A44743E2C693 /* Debug */,
-				64BC1C4F2D476EEDCECC77F7 /* Release */,
+				8EB7344CA00CF93E43A9B97C /* Debug */,
+				9BB45A6461BA3CD1B4D8A756 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		1577F18E8AD11AC7DB255B21 /* Build configuration list for PBXNativeTarget "UniversalPassportReader" */ = {
+		552323665F2A4ADE0BE81B39 /* Build configuration list for PBXProject "UniversalPassportReader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FC84591C8632C7A87B475679 /* Debug */,
-				F4B0E478CF4F3AE7BE55FA44 /* Release */,
+				CF94824C4C4B229108A93502 /* Debug */,
+				23B5A317FDFE93DFD7F98446 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-/* End XCConfigurationList */
+		A0166A94DB9DFE2A1353492E /* Build configuration list for PBXNativeTarget "UniversalPassportReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84CD02EB1653BA9397C47629 /* Debug */,
+				CF1D815583C33A7246CB964C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
 	};
-	rootObject = 7B220AE141FA1BD92AAAC569 /* Project object */;
+	rootObject = 536C5F5D990CDE19B2843B62 /* Project object */;
 }

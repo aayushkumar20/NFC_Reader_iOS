@@ -146,10 +146,11 @@ swiftc -o run_benchmarks benchmark.swift UniversalPassportReader/Sources/Univers
 
 Two continuous integration workflows are configured under `.github/workflows/`:
 
-### 1. Build and Performance Validation (`ci.yml`)
+### 1. Build, Test, and Performance Validation (`ci.yml`)
 Runs on every push or pull request to check:
 * **Code Quality**: Executes `swiftlint` to verify code-correctness and style compliance.
-* **Compilation**: Builds the framework, compiles the xcframework bundle, and builds the demo app target.
+* **Unit Testing**: Installs `xcodegen`, generates the Xcode framework structure, and executes the suite of **14 Unit Tests** (checking lenient parsed MRZ, hex converters, key derivations, check digit calculations) on the iOS Simulator target.
+* **Compilation**: Compiles the framework, packages the xcframework bundle, and builds the demo app target.
 * **Regression Check**: Automatically compiles and executes the core benchmarking utility to verify no logic or execution speed regressions were introduced.
 
 ### 2. CodeQL Security Vulnerability Scan (`codeql.yml`)
