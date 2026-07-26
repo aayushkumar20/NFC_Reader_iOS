@@ -55,21 +55,39 @@ jobs:
             UniversalPassportReader.podspec
           name: Release ${{ github.ref_name }}
           body: |
-            ## UniversalPassportReader iOS Framework Release
+            ## 🚀 UniversalPassportReader iOS Framework ${{ github.ref_name }}
             
-            This release packages the precompiled `.xcframework` and CocoaPods specification for `UniversalPassportReader` version `${{ github.ref_name }}`.
+            We are pleased to announce the official release of `UniversalPassportReader` version `${{ github.ref_name }}`. This premium, zero-dependency iOS framework compiles native C++ and Swift targets to provide high-performance, secure ICAO Doc 9303 biometric passport and identity card reading.
             
-            ### Package Integration
+            ### 🌟 Key Features in this Release:
+            - **Customizable Credentials (`PassportAuthKey`)**: Supports standard BAC key derivation (`mrz`), Card Access Number KDF (`can`), direct 16-byte raw session keys (`customHex`), and plain ISO-7816 reads without envelope encryption (`none`).
+            - **Global Layout Parsing**: Removed strict document prefix matching constraints in the MRZ parsing engine to support any 2-line or 3-line travel ID card layout (TD1, TD2, TD3).
+            - **Code Correctness & Testing**: Validated against 14 unit test suites (lenient parsing, cryptographic padding, hex codecs, KDF) running on dynamic iOS Simulator destinations.
+            - **Performance Benchmarks**: Bundles a standalone command-line benchmarking script measuring key derivation speed, 3DES CBC encryption, and Retail MAC calculation performance.
+            - **Security & Quality Audits**: Standardized SwiftLint checks focusing on code correctness and memory retention issues (e.g. `weak_delegate` checks), coupled with automated weekly CodeQL security scans.
             
-            #### 1. CocoaPods Setup
-            To consume this version via CocoaPods, add the following to your target definition inside your `Podfile`:
+            ---
+            
+            ### 📦 Package Integration Guide
+            
+            #### 1. CocoaPods Setup (Recommended)
+            Add the following specification to your application's `Podfile`:
             ```ruby
-            pod 'UniversalPassportReader', :git => 'https://github.com/aayushkumar20/NFC_Reader_iOS.git', :tag => '${{ github.ref_name }}'
+            target 'YourAppTarget' do
+              use_frameworks!
+              pod 'UniversalPassportReader', :git => 'https://github.com/aayushkumar20/NFC_Reader_iOS.git', :tag => '${{ github.ref_name }}'
+            end
             ```
+            Run `pod install` in your terminal to integrate the framework.
             
             #### 2. Manual Integration
-            - Download the attached `UniversalPassportReader.xcframework.zip`
-            - Extract and drag it into your Xcode project's framework target.
+            - Download the attached `UniversalPassportReader.xcframework.zip` archive.
+            - Extract and drag `UniversalPassportReader.xcframework` into your project target's **Frameworks, Libraries, and Embedded Content** section.
+            - Set selection to **Embed & Sign**.
+            
+            #### 3. Swift Package Manager (SPM)
+            Add the package dependency using the repository link:
+            `https://github.com/aayushkumar20/NFC_Reader_iOS.git`
           draft: false
           prerelease: false
         env:
