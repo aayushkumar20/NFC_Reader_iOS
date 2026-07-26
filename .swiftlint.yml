@@ -1,28 +1,40 @@
-disabled_rules:
-  # Loosen naming constraints for mathematical/cryptographical index and variable names (e.g. i, j, c, iv, ok, p1, p2, le, sw)
-  - identifier_name
-  
-  # Allow long line lengths for verbose cryptographic functions and multiline gradients
-  - line_length
-  
-  # Disable file and type length limits for unified classes like PassportNFCReader (contains full state delegate)
-  - file_length
-  - type_body_length
-  
-  # Allow standard complexity in parser switch-cases
-  - cyclomatic_complexity
-  - function_body_length
-  - function_parameter_count
-  
-  # Disable styling rules that generate verbose warnings
-  - trailing_whitespace
-  - multiple_closures_with_trailing_closure
-  - implicit_optional_initialization
-  - unused_closure_parameter
-  - for_where
-  - force_cast
-  - empty_count
+# SwiftLint Configuration focusing on Bug Prevention & Correctness
 
+# Disabled style-only or layout guidelines that do not impact code safety
+disabled_rules:
+  - identifier_name                        # Low-level cryptographic loops require short index variables (e.g. i, j, c, iv, ok)
+  - line_length                            # Allow long math equations and multi-line Swift gradients
+  - type_body_length                       # Large reader state handler files
+  - file_length                            # Large combined reader state delegate logic
+  - cyclomatic_complexity                  # Complex cryptographic parsing switch-cases
+  - function_body_length                   # Cryptographic algorithms span multiple mathematical lines
+  - function_parameter_count               # Bridging functions require multiple callback bindings
+  - trailing_whitespace                    # Suppress layout whitespaces from block code formatting
+  - multiple_closures_with_trailing_closure # Allow trailing closures on multi-callback objects
+  - implicit_optional_initialization       # Suppress warnings on standard optional variable setups
+  - unused_closure_parameter               # Allow ignoring unused callback params
+  - for_where                              # Prefer readability of explicit loop if-checks over forced 'where' syntax
+  - force_cast                             # Skip force cast validations in layout layers
+  - empty_count                            # Allow explicit .count == 0 comparisons in legacy loops
+
+# Opt-in to rules that explicitly prevent bugs, compiler performance issues, and memory leaks
 opt_in_rules:
-  # Keep only critical safety checks
-  - vertical_whitespace
+  # Memory & Threading Safety
+  - weak_delegate                          # Prevents retain cycles and memory leaks on delegate properties
+  
+  # Logic & Bug Prevention
+  - duplicate_imports                      # Detects duplicate module imports
+  - duplicate_enum_cases                   # Catches duplicate cases inside status or tag enums
+  - identical_operands                     # Detects comparison of identical operands (e.g., LHS == RHS)
+  - unused_control_flow_label              # Catches unused labels in nested loops
+  - unused_enumerated                      # Warns when enumerated index is unused (performance/logic bug)
+  
+  # Modern Swift Correctness & Performance
+  - first_where                            # Suggests .first(where:) instead of filtering a full array first
+  - legacy_cggeometry_functions            # Prevents using legacy C-style CGGeometry functions
+  - legacy_constant                        # Enforces modern Swift type constants
+  - legacy_constructor                     # Enforces modern Swift type initializations
+  - redundant_discardable_let              # Removes redundant discardable lets
+  - redundant_nil_coalescing               # Warns on redundant nil coalescings
+  - sorted_first_last                      # Suggests .min() or .max() instead of sorting an entire array to get first/last
+  - vertical_whitespace                    # Standard single vertical spacing checks
